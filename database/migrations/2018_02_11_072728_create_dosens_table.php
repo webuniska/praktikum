@@ -19,8 +19,8 @@ class CreateDosensTable extends Migration
       $table->string('nama');
       $table->string('nohp');
       $table->string('email');
-      $table->string('foto');
-      $table->tinyInteger('status');
+      $table->string('foto')->default('default.png');
+      $table->tinyInteger('status')->default(0);
       $table->integer('user_id');
       $table->timestamps();
     });

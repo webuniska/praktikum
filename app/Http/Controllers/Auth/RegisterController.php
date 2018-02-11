@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
+use App\User;
+use App\Dosen;
 
 class RegisterController extends Controller
 {
@@ -74,8 +77,26 @@ class RegisterController extends Controller
     return view('auth.RegisterDosen');
   }
 
-  public function submitRegisterDosen()
+  public function submitRegisterDosen(Request $request)
   {
-    dd('asd');
+    $User = new User;
+    $User->username = $request->username;
+    $User->password = bcrypt($request->password);
+    $User->tipe     = 2;
+    $User->save();
+
+    $UserID = User::orderBy('id', 'desc')
+                ->first()
+                ->id;
+
+    $Dosen = new Dosen;
+    $Dosen->nidn    = $request->nidn;
+    $Dosen->nama    = $request->nama;
+    $Dosen->nohp    = $request->nohp;
+    $Dosen->email   = $request->email;
+    $Dosen->user_id = $UserID;
+    $Dosen->save();
+
+    return redirect('/');
   }
 }

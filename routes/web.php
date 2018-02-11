@@ -12,15 +12,13 @@
 */
 Auth::routes();
 
+Route::get('/', 'Auth\LoginController@showLoginForm');
+
 Route::get('/register-dosen', 'Auth\RegisterController@RegisterDosen');
 Route::POST('/register-dosen', 'Auth\RegisterController@submitRegisterDosen');
 Route::get('/register-mahasiswa', 'Auth\RegisterController@FormRegisterMahasiswa');
 
 Route::get('/dashboard', 'UserController@Dashboard')->name('Dashboard');
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 Route::get('/home', 'HomeController@index')->name('home');
