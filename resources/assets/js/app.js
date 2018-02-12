@@ -4,10 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-// require('./bootstrap');
+require('./bootstrap');
 // require('jquery');
 // require('./custom/vendors/jquery/dist/jquery.min');
-// require('./custom/jquery-3.3.1');
+// require('./custom/jquery-2.2.4');
 require('./custom/vendors/bootstrap/dist/js/bootstrap.min');
 require('./custom/vendors/fastclick/lib/fastclick');
 require('./custom/vendors/nprogress/nprogress');
@@ -17,6 +17,7 @@ require('./custom/vendors/bootstrap-progressbar/bootstrap-progressbar.min');
 require('./custom/vendors/iCheck/icheck.min');
 require('./custom/vendors/skycons/skycons');
 require('./custom/custom');
+require('./custom/sweetalert');
 
 // require('./custom/vendors/jqvmap/dist/jquery.vmap');
 // require('./custom/vendors/jqvmap/dist/maps/jquery.vmap.world');
@@ -33,7 +34,7 @@ require('./custom/custom');
 // require('./custom/vendors/moment/min/moment.min');
 // require('./custom/vendors/bootstrap-daterangepicker/jsdaterangepicker');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -41,8 +42,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+//
+// const app = new Vue({
+//     el: '#app'
+// });

@@ -1,17 +1,29 @@
 @extends('auth.Layout.Master')
 @section('content')
   <body class="login">
+    @if (session('success'))
+      <script type="text/javascript">
+        swal({
+          title: "Berhasil",
+          text: "{{session('success')}}",
+          icon: "success",
+          button: "OK",
+        });
+      </script>
+    @endif
+    {{-- {{dd(Auth::user())}} --}}
     <div>
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form>
+            <form method="POST" action="{{ route('login') }}">
+              {{ csrf_field() }}
               <h1>Login</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required>
+                <input type="text" class="form-control" placeholder="Username" name="username" required>
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required>
+                <input type="password" class="form-control" placeholder="Password" name="password" required>
               </div>
               <div>
                 <button class="btn btn-success col-md-12">Login</button>

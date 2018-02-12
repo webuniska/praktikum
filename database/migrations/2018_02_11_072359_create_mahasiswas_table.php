@@ -19,7 +19,7 @@ class CreateMahasiswasTable extends Migration
       $table->string('nama');
       $table->string('nohp');
       $table->string('email');
-      $table->string('foto');
+      $table->string('foto')->default('default.png');
       $table->integer('user_id');
       $table->integer('kelas_id');
       $table->timestamps();

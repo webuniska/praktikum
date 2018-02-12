@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 use App\User;
 use App\Dosen;
+use App\Kelas;
+use App\Mahasiswa;
 
 class RegisterController extends Controller
 {
@@ -97,6 +99,37 @@ class RegisterController extends Controller
     $Dosen->user_id = $UserID;
     $Dosen->save();
 
-    return redirect('/');
+    return redirect('/')->with('success', 'Registrasi Akun Dosen '.$Dosen->nama.' Berhasil');
+  }
+
+  public function RegisterMahasiswa()
+  {
+    $Kelas = Kelas::all();
+
+    return view('auth.RegisterMahasiswa', ['Kelas' => $Kelas]);
+  }
+
+  public function submitRegisterMahasiswa(Request $request)
+  {
+    $User = new User;
+    $User->username = $request->username;
+    $User->password = bcrypt($request->password);
+    $User->tipe     = 3;
+    $User->save();
+
+    $UserID = User::orderBy('id', 'desc')
+                ->first()
+                ->id;
+
+    $Mahasiswa = new Mahasiswa;
+    $Mahasiswa->npm      = $request->npm;
+    $Mahasiswa->nama     = $request->nama;
+    $Mahasiswa->nohp     = $request->nohp;
+    $Mahasiswa->email    = $request->email;
+    $Mahasiswa->kelas_id = $request->kelas_id;
+    $Mahasiswa->user_id  = $UserID;
+    $Mahasiswa->save();
+
+    return redirect('/')->with('success', 'Registrasi Akun Mahasiswa '.$Mahasiswa->nama.' Berhasil');
   }
 }
