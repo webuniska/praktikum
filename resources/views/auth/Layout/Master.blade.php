@@ -27,7 +27,7 @@
         icon: "success",
         button: "OK",
       });
-      @endif
+    @endif
   </script>
   @yield('content')
 </body>
