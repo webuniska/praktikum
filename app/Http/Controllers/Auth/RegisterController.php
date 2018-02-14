@@ -81,6 +81,11 @@ class RegisterController extends Controller
 
   public function submitRegisterDosen(Request $request)
   {
+    $this->validate($request, [
+      'username' => 'unique:users,username',
+      'password' => 'confirmed',
+    ]);
+
     $User = new User;
     $User->username = $request->username;
     $User->password = bcrypt($request->password);
@@ -92,11 +97,11 @@ class RegisterController extends Controller
                 ->id;
 
     $Dosen = new Dosen;
-    $Dosen->nidn    = $request->nidn;
-    $Dosen->nama    = $request->nama;
-    $Dosen->nohp    = $request->nohp;
-    $Dosen->email   = $request->email;
-    $Dosen->user_id = $UserID;
+    $Dosen->nomorinduk = $request->nidn;
+    $Dosen->nama       = $request->nama;
+    $Dosen->nohp       = $request->nohp;
+    $Dosen->email      = $request->email;
+    $Dosen->user_id    = $UserID;
     $Dosen->save();
 
     return redirect('/')->with('success', 'Registrasi Akun Dosen '.$Dosen->nama.' Berhasil');
@@ -111,6 +116,11 @@ class RegisterController extends Controller
 
   public function submitRegisterMahasiswa(Request $request)
   {
+    $this->validate($request, [
+      'username' => 'unique:users,username',
+      'password' => 'confirmed',
+    ]);
+    
     $User = new User;
     $User->username = $request->username;
     $User->password = bcrypt($request->password);
@@ -122,12 +132,12 @@ class RegisterController extends Controller
                 ->id;
 
     $Mahasiswa = new Mahasiswa;
-    $Mahasiswa->npm      = $request->npm;
-    $Mahasiswa->nama     = $request->nama;
-    $Mahasiswa->nohp     = $request->nohp;
-    $Mahasiswa->email    = $request->email;
-    $Mahasiswa->kelas_id = $request->kelas_id;
-    $Mahasiswa->user_id  = $UserID;
+    $Mahasiswa->nomorinduk = $request->npm;
+    $Mahasiswa->nama       = $request->nama;
+    $Mahasiswa->nohp       = $request->nohp;
+    $Mahasiswa->email      = $request->email;
+    $Mahasiswa->kelas_id   = $request->kelas_id;
+    $Mahasiswa->user_id    = $UserID;
     $Mahasiswa->save();
 
     return redirect('/')->with('success', 'Registrasi Akun Mahasiswa '.$Mahasiswa->nama.' Berhasil');
