@@ -9,23 +9,23 @@
             {{ csrf_field() }}
               <h1>Register Dosen</h1>
               <div>
-                <input type="text" class="form-control" placeholder="NIDN" name="nidn" required>
+                <input type="text" class="form-control" placeholder="NIDN" name="nidn" pattern="[0-9]+" required oninvalid="this.setCustomValidity('Masukkan angka')">
               </div>
               <div>
-                <input type="text" class="form-control" placeholder="Nama" name="nama" required>
+                <input type="text" class="form-control" placeholder="Nama" name="nama" required pattern="[a-zA-Z]+">
               </div>
               <div>
-                <input type="text" class="form-control" placeholder="No Handphone" name="nohp" required>
+                <input type="text" class="form-control" placeholder="No Handphone" name="nohp" required pattern="[0-9]+">
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="E-Mail" name="email" required>
+                <input type="email" class="form-control" placeholder="E-Mail" name="email" pattern="[^ @]*@[^ @]*.[a-zA-Z]{2,}" autofocus required oninvalid="this.setCustomValidity('Masukkan email dengan benar')">
               </div>
               <hr>
               <div>
-                <input type="text" class="form-control" placeholder="Username" name="username" required>
+                <input type="text" class="form-control" placeholder="Username" name="username" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{7,20}$" oninvalid="this.setCustomValidity('Input hanya boleh huruf a-z tanpa spasi!')">
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" name="password" required>
+                <input type="password" class="form-control" placeholder="Password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
               </div>
               <div>
                 <button type="submit" class="btn btn-success col-md-12">Daftar</button>
