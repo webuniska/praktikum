@@ -41,8 +41,8 @@
                         <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataMateri', ['id' => IDCrypt::Encrypt($DataMateriPraktikum->id)])}}')">
                           <i class="fa fa-pencil"></i> Edit
                         </button>
-                        <button class="btn-xs btn-primary" onclick="ubahstatusperiode('{{IDCrypt::Encrypt($DataMateriPraktikum->id)}}')">
-                          <i class="fa fa-exchange"></i> Ubah Status
+                        <button class="btn-xs btn-primary" onclick="hapus('{{IDCrypt::Encrypt($DataMateriPraktikum->id)}}')">
+                          <i class="fa fa-exchange"></i> Hapus
                         </button>
                       </td>
                     </tr>

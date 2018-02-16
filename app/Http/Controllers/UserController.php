@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+use File;
 use Carbon;
 use IDCrypt;
 use DataUser;
@@ -87,7 +88,7 @@ class UserController extends Controller
     $MateriPraktikum = new MateriPraktikum;
 
     $FotoExt  = $request->foto->getClientOriginalExtension();
-    $FotoName = bcrypt($request->kodemateri).' - '.$request->namamateri;
+    $FotoName = Carbon::now()->format('dmYHiS').' - '.$request->namamateri;
     $Foto     = $FotoName.'.'.$FotoExt;
     $request->foto->move('images/Materi', $Foto);
 
@@ -95,6 +96,36 @@ class UserController extends Controller
     $MateriPraktikum->namamateri      = $request->namamateri;
     $MateriPraktikum->semesterminimal = $request->semesterminimal;
     $MateriPraktikum->foto            = $Foto;
+    $MateriPraktikum->save();
+
+    return redirect(route('DataMateri'))->with('success', 'Data Materi '.$request->namamateri.' Berhasil di Tambahkan');
+  }
+
+  public function EditDataMateri($Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $MateriPraktikum = MateriPraktikum::find($Id);
+
+    return view('user.EditDataMateri', ['MateriPraktikum' => $MateriPraktikum]);
+  }
+
+  public function submitEditDataMateri(Request $request, $Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $MateriPraktikum = MateriPraktikum::find($Id);
+
+    if ($request->foto) {
+      $FotoExt  = $request->foto->getClientOriginalExtension();
+      $FotoName = Carbon::now()->format('dmYHiS').' - '.$request->namamateri;
+      $Foto     = $FotoName.'.'.$FotoExt;
+      $request->foto->move('images/Materi', $Foto);
+      File::delete('images/Materi/'.$MateriPraktikum->foto);
+      $MateriPraktikum->foto            = $Foto;
+    }
+
+    $MateriPraktikum->kodemateri      = $request->kodemateri;
+    $MateriPraktikum->namamateri      = $request->namamateri;
+    $MateriPraktikum->semesterminimal = $request->semesterminimal;
     $MateriPraktikum->save();
 
     return redirect(route('DataMateri'))->with('success', 'Data Materi '.$request->namamateri.' Berhasil di Tambahkan');
