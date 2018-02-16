@@ -25,5 +25,6 @@ class HelpersProvider extends ServiceProvider
   {
     require_once app_path().'/Helpers/DataUserHelper.php';
     require_once app_path().'/Helpers/IDCryptHelper.php';
+    require_once app_path().'/Helpers/TanggalHelper.php';
   }
 }

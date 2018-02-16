@@ -209,8 +209,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Carbon' => Carbon\Carbon::class,
         'DataUser' => App\Helpers\DataUserHelper::class,
         'IDCrypt' => App\Helpers\IDCryptHelper::class,
+        'Tanggal' => App\Helpers\TanggalHelper::class,
 
     ],
 
