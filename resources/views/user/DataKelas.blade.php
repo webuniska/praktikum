@@ -13,10 +13,10 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <a href="{{route('TambahDataKelas')}}" class="btn btn-success">
+              <button onclick="redirect('{{route('TambahDataKelas')}}')" class="btn btn-success">
                 <i class="fa fa-plus-circle"></i>
                 Tambah Data
-              </a>
+              </button>
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
