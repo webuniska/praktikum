@@ -7,5 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-
+  public function DataUser()
+  {
+    return $this->hasOne('App\Mahasiswa', 'user_id', 'id');
+  }
 }
