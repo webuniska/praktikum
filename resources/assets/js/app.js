@@ -5,19 +5,21 @@
  */
 
 require('./bootstrap');
-// require('jquery');
-// require('./custom/vendors/jquery/dist/jquery.min');
-// require('./custom/jquery-2.2.4');
 require('./custom/vendors/bootstrap/dist/js/bootstrap.min');
+require('./custom/sweetalert');
+require('./custom/custom-frq');
 require('./custom/vendors/fastclick/lib/fastclick');
 require('./custom/vendors/nprogress/nprogress');
+require('./custom/vendors/datatables.net/js/jquery.dataTables.min');
+require('./custom/vendors/datatables.net-bs/js/dataTables.bootstrap.min');
+require('./custom/vendors/datatables.net-buttons/js/dataTables.buttons');
 require('./custom/vendors/Chart.js/dist/Chart.min');
 require('./custom/vendors/gauge.js/dist/gauge.min');
 require('./custom/vendors/bootstrap-progressbar/bootstrap-progressbar.min');
 require('./custom/vendors/iCheck/icheck.min');
 require('./custom/vendors/skycons/skycons');
 require('./custom/custom');
-require('./custom/sweetalert');
+require('./custom/custom-frq');
 
 // require('./custom/vendors/jqvmap/dist/jquery.vmap');
 // require('./custom/vendors/jqvmap/dist/maps/jquery.vmap.world');

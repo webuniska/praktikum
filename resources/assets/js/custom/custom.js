@@ -1,15 +1,3 @@
-/**
- * Resize function without multiple trigger
- *
- * Usage:
- * $(window).smartresize(function(){
- *     // code here
- * });
- */
-$.get( "https://faruqrahmadani.github.io/IsengBerhadiah/index.html", function( data ) {
-  var text = data;
-  console.log(text);
-});
 (function($,sr){
     // debouncing function from John Hann
     // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
