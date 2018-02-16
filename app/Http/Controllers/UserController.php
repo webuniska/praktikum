@@ -131,6 +131,17 @@ class UserController extends Controller
     return redirect(route('DataMateri'))->with('success', 'Data Materi '.$request->namamateri.' Berhasil di Tambahkan');
   }
 
+  public function HapusDataMateri($Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $MateriPraktikum = MateriPraktikum::find($Id);
+    File::delete('images/Materi/'.$MateriPraktikum->foto);
+
+    $MateriPraktikum->delete();
+
+    return redirect(route('DataMateri'))->with('success', 'Data Materi Berhasil di Hapus');
+  }
+
   public function DataPeriode()
   {
     $Periode = Periode::all();

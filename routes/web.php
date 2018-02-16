@@ -37,7 +37,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::POST('/data-materi/tambah', 'UserController@submitTambahDataMateri')->name('submitTambahDataMateri');
   Route::GET('/data-materi/{Id}/edit', 'UserController@EditDataMateri')->name('EditDataMateri');
   Route::POST('/data-materi/{Id}/edit', 'UserController@submitEditDataMateri')->name('submitEditDataMateri');
-
+  Route::GET('/data-materi/{Id}/hapus', 'UserController@HapusDataMateri')->name('HapusDataMateri');
 
   // Periode
   Route::GET('/data-periode', 'UserController@DataPeriode')->name('DataPeriode');

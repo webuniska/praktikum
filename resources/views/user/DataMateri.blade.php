@@ -41,8 +41,8 @@
                         <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataMateri', ['id' => IDCrypt::Encrypt($DataMateriPraktikum->id)])}}')">
                           <i class="fa fa-pencil"></i> Edit
                         </button>
-                        <button class="btn-xs btn-primary" onclick="hapus('{{IDCrypt::Encrypt($DataMateriPraktikum->id)}}')">
-                          <i class="fa fa-exchange"></i> Hapus
+                        <button class="btn-xs btn-danger" onclick="hapus('{{route('HapusDataMateri', ['Id' => IDCrypt::Encrypt($DataMateriPraktikum->id)])}}')">
+                          <i class="fa fa-trash"></i> Hapus
                         </button>
                       </td>
                     </tr>
