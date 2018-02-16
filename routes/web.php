@@ -31,6 +31,13 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-kelas/{Id}/edit', 'UserController@EditDataKelas')->name('EditDataKelas');
   Route::POST('/data-kelas/{Id}/edit', 'UserController@submitEditDataKelas')->name('submitEditDataKelas');
   Route::GET('/data-kelas/{Id}/hapus', 'UserController@HapusDataKelas')->name('HapusDataKelas');
+  // Materi Praktikum
+  Route::GET('/data-materi', 'UserController@DataMateri')->name('DataMateri');
+  Route::GET('/data-materi/tambah', 'UserController@TambahDataMateri')->name('TambahDataMateri');
+  Route::POST('/data-materi/tambah', 'UserController@submitTambahDataMateri')->name('submitTambahDataMateri');
+  Route::GET('/data-materi/{Id}', 'UserController@EditDataMateri')->name('EditDataMateri');
+
+
   // Periode
   Route::GET('/data-periode', 'UserController@DataPeriode')->name('DataPeriode');
   Route::GET('/data-periode/tambah', 'UserController@TambahDataPeriode')->name('TambahDataPeriode');

@@ -46,6 +46,7 @@
                 <li><a><i class="fa fa-home"></i> Master Data <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="{{route('DataKelas')}}">Data Kelas</a></li>
+                    <li><a href="{{route('DataMateri')}}">Data Materi</a></li>
                     <li><a href="{{route('DataPeriode')}}">Data Periode</a></li>
                     <li><a href="index2.html">Dashboard2</a></li>
                     <li><a href="index3.html">Dashboard3</a></li>

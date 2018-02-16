@@ -13,4 +13,4 @@ yarn-error.log
 .env
 .DS_Store
 /public/images
-!/public/images/User/default.png
+!*/images/User/default.png

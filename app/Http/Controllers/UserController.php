@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
-use DataUser;
+use Carbon;
 use IDCrypt;
+use DataUser;
+use Tanggal;
 use App\User;
 use App\Kelas;
 use App\Periode;
 use App\Mahasiswa;
+use App\MateriPraktikum;
 
 class UserController extends Controller
 {
@@ -65,6 +68,36 @@ class UserController extends Controller
     $Kelas->delete();
 
     return redirect(route('DataKelas'))->with('success', 'Data Kelas Berhasil di Hapus');
+  }
+
+  public function DataMateri()
+  {
+    $MateriPraktikum = MateriPraktikum::all();
+
+    return view('user.DataMateri', ['MateriPraktikum' => $MateriPraktikum]);
+  }
+
+  public function TambahDataMateri()
+  {
+    return view('user.TambahDataMateri');
+  }
+
+  public function submitTambahDataMateri(Request $request)
+  {
+    $MateriPraktikum = new MateriPraktikum;
+
+    $FotoExt  = $request->foto->getClientOriginalExtension();
+    $FotoName = bcrypt($request->kodemateri).' - '.$request->namamateri;
+    $Foto     = $FotoName.'.'.$FotoExt;
+    $request->foto->move('images/Materi', $Foto);
+
+    $MateriPraktikum->kodemateri      = $request->kodemateri;
+    $MateriPraktikum->namamateri      = $request->namamateri;
+    $MateriPraktikum->semesterminimal = $request->semesterminimal;
+    $MateriPraktikum->foto            = $Foto;
+    $MateriPraktikum->save();
+
+    return redirect(route('DataMateri'))->with('success', 'Data Materi '.$request->namamateri.' Berhasil di Tambahkan');
   }
 
   public function DataPeriode()
