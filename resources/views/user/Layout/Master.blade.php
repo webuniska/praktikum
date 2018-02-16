@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 @php
+  use App\Helpers\DataUserHelper;
   use App\Helpers\IDCrypt;
+  use App\Helpers\TanggalHelper;
+  use Carbon\Carbon;
+  $DataUser = DataUser::DataUser(Auth::user());
 @endphp
 <html lang="en">
 <head>
@@ -38,10 +42,11 @@
             <div class="menu_section">
               <h3>Admin</h3>
               <ul class="nav side-menu">
-                <li><a href="#" onclick="redirect('{{route('Home')}}')"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="{{route('Home')}}"><i class="fa fa-home"></i>Home</a></li>
                 <li><a><i class="fa fa-home"></i> Master Data <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="#" onclick="redirect('{{route('DataKelas')}}')">Data Kelas</a></li>
+                    <li><a href="{{route('DataKelas')}}">Data Kelas</a></li>
+                    <li><a href="{{route('DataPeriode')}}">Data Periode</a></li>
                     <li><a href="index2.html">Dashboard2</a></li>
                     <li><a href="index3.html">Dashboard3</a></li>
                   </ul>

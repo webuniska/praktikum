@@ -87,3 +87,28 @@ window.canthapus = function (link)
     button: "OK",
   });
 }
+
+window.ubahstatusperiode = function (id)
+{
+  swal({
+    title   : "Ubah Status",
+    text    : "Yakin Ingin Mengubah Status Periode?",
+    icon    : "warning",
+    buttons : [
+      "Tidak",
+      "Iya",
+    ],
+  })
+  .then((hapus) => {
+    if (hapus) {
+      window.location = '/data-periode/'+id+'/status';
+    } else {
+      swal({
+        title  : "Batal",
+        text   : "Batal Merubah Status Data Periode",
+        icon   : "info",
+        timer  : 2500,
+      })
+    }
+  });
+}

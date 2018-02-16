@@ -24,12 +24,20 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/home', 'UserController@Home')->name('Home');
 
   //Admin
+  //Kelas
   Route::GET('/data-kelas', 'UserController@DataKelas')->name('DataKelas');
   Route::GET('/data-kelas/tambah', 'UserController@TambahDataKelas')->name('TambahDataKelas');
   Route::POST('/data-kelas/tambah', 'UserController@submitTambahDataKelas')->name('submitTambahDataKelas');
   Route::GET('/data-kelas/{Id}/edit', 'UserController@EditDataKelas')->name('EditDataKelas');
   Route::POST('/data-kelas/{Id}/edit', 'UserController@submitEditDataKelas')->name('submitEditDataKelas');
   Route::GET('/data-kelas/{Id}/hapus', 'UserController@HapusDataKelas')->name('HapusDataKelas');
+  // Periode
+  Route::GET('/data-periode', 'UserController@DataPeriode')->name('DataPeriode');
+  Route::GET('/data-periode/tambah', 'UserController@TambahDataPeriode')->name('TambahDataPeriode');
+  Route::POST('/data-periode/tambah', 'UserController@submitTambahDataPeriode')->name('submitTambahDataPeriode');
+  Route::GET('/data-periode/{Id}/edit', 'UserController@EditDataPeriode')->name('EditDataPeriode');
+  Route::POST('/data-periode/{Id}/edit', 'UserController@submitEditDataPeriode')->name('submitEditDataPeriode');
+  Route::GET('/data-periode/{Id}/status', 'UserController@UbahStatusDataPeriode')->name('UbahStatusDataPeriode');
 
 });
 

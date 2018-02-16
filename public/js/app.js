@@ -13401,6 +13401,26 @@ window.canthapus = function (link) {
   });
 };
 
+window.ubahstatusperiode = function (id) {
+  swal({
+    title: "Ubah Status",
+    text: "Yakin Ingin Mengubah Status Periode?",
+    icon: "warning",
+    buttons: ["Tidak", "Iya"]
+  }).then(function (hapus) {
+    if (hapus) {
+      window.location = '/data-periode/' + id + '/status';
+    } else {
+      swal({
+        title: "Batal",
+        text: "Batal Merubah Status Data Periode",
+        icon: "info",
+        timer: 2500
+      });
+    }
+  });
+};
+
 /***/ }),
 /* 14 */
 /***/ (function(module, exports) {
