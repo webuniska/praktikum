@@ -20,9 +20,18 @@ Route::GET('/register-mahasiswa', 'Auth\RegisterController@RegisterMahasiswa');
 Route::POST('/register-mahasiswa', 'Auth\RegisterController@submitRegisterMahasiswa');
 Route::GET('/logout', 'Auth\LoginController@logout');
 
-Route::GET('/home', 'UserController@Home');
+Route::group(['middleware' => ['UserMiddleware']], function () {
+  Route::GET('/home', 'UserController@Home')->name('Home');
 
+  //Admin
+  Route::GET('/data-kelas', 'UserController@DataKelas')->name('DataKelas');
+  Route::GET('/data-kelas/tambah', 'UserController@TambahDataKelas')->name('TambahDataKelas');
+  Route::POST('/data-kelas/tambah', 'UserController@submitTambahDataKelas')->name('submitTambahDataKelas');
+  Route::GET('/data-kelas/{Id}/edit', 'UserController@EditDataKelas')->name('EditDataKelas');
+  Route::POST('/data-kelas/{Id}/edit', 'UserController@submitEditDataKelas')->name('submitEditDataKelas');
+  Route::GET('/data-kelas/{Id}/hapus', 'UserController@HapusDataKelas')->name('HapusDataKelas');
 
+});
 
 
 // BATAS SUCI

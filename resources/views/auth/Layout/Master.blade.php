@@ -10,7 +10,7 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="{{ asset('js/app.js') }}"></script>
 </head>
-<body class="login">
+<body class="login" id="body">
   <script type="text/javascript">
     @if (count($errors) != 0)
       swal({
