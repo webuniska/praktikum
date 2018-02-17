@@ -36,10 +36,10 @@
                       <td>{{$DataKelas->namakelas}}</td>
                       <td>{{count($DataKelas->Mahasiswa)}}</td>
                       <td class="text-center">
-                        <button class="btn-sm btn-info" onclick="redirect('{{route('EditDataKelas', ['id' => IDCrypt::Encrypt($DataKelas->id)])}}')">
+                        <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataKelas', ['id' => IDCrypt::Encrypt($DataKelas->id)])}}')">
                           <i class="fa fa-pencil"></i> Edit
                         </button>
-                        <button class="btn-sm btn-danger" onclick="{{count($DataKelas->Mahasiswa) ? 'cant' : ''}}hapus('{{route('HapusDataKelas', ['id' => IDCrypt::Encrypt($DataKelas->id)])}}')">
+                        <button class="btn-xs btn-danger" onclick="{{count($DataKelas->Mahasiswa) ? 'cant' : ''}}hapus('{{route('HapusDataKelas', ['id' => IDCrypt::Encrypt($DataKelas->id)])}}')">
                           <i class="fa fa-trash"></i> Hapus
                         </button>
                       </td>
