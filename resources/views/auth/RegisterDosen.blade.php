@@ -21,7 +21,7 @@
             </div>
             <hr>
             <div>
-              <input type="text" class="form-control" placeholder="Username" name="username" value="{{old('username')}}" required pattern="^[A-Za-z0-9_]{1,32}$">
+              <input type="text" class="form-control" placeholder="Username" name="username" value="{{old('username')}}" required pattern="^[A-Za-z0-9_]{6,}$">
             </div>
             <div>
               <input type="password" class="form-control" placeholder="Password" name="password" required>

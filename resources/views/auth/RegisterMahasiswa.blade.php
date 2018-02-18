@@ -27,7 +27,7 @@
             </select>
             <hr>
             <div>
-              <input type="text" class="form-control" placeholder="Username" name="username" value="{{old('username')}}" required pattern="^[A-Za-z0-9_]{1,32}$" title="Input tidak menggunakan spasi">
+              <input type="text" class="form-control" placeholder="Username" name="username" value="{{old('username')}}" required pattern="^[A-Za-z0-9_]{6,}$" title="Input tidak menggunakan spasi">
             </div>
             <div>
               <input type="password" class="form-control" placeholder="Password" name="password" required>
