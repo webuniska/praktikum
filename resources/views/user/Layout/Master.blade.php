@@ -48,8 +48,7 @@
                     <li><a href="{{route('DataKelas')}}">Data Kelas</a></li>
                     <li><a href="{{route('DataMateri')}}">Data Materi</a></li>
                     <li><a href="{{route('DataPeriode')}}">Data Periode</a></li>
-                    <li><a href="index2.html">Dashboard2</a></li>
-                    <li><a href="index3.html">Dashboard3</a></li>
+                    <li><a href="{{route('DataMateriPeriode')}}">Data Materi Periode</a></li>
                   </ul>
                 </li>
                 <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>

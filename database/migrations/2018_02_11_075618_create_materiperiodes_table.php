@@ -16,7 +16,7 @@ class CreateMateriperiodesTable extends Migration
     Schema::create('materiperiodes', function (Blueprint $table) {
       $table->increments('id');
       $table->tinyInteger('periode_id');
-      $table->tinyInteger('materipraktikum_id');
+      $table->tinyInteger('materi_praktikum_id');
       $table->timestamps();
     });
   }

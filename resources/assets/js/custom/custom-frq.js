@@ -112,3 +112,8 @@ window.ubahstatusperiode = function (id)
     }
   });
 }
+
+window.statusmateriperiode = function (id,route)
+{
+  window.location = '/data-materiperiode/'+id+'/status/'+route;
+}

@@ -213,6 +213,7 @@ return [
         'DataUser' => App\Helpers\DataUserHelper::class,
         'IDCrypt' => App\Helpers\IDCryptHelper::class,
         'Tanggal' => App\Helpers\TanggalHelper::class,
+        'ArrayHelper' => App\Helpers\ArrayHelper::class,
 
     ],
 

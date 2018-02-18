@@ -8,12 +8,14 @@ use Auth;
 use File;
 use Carbon;
 use IDCrypt;
-use DataUser;
 use Tanggal;
+use DataUser;
+use ArrayHelper;
 use App\User;
 use App\Kelas;
 use App\Periode;
 use App\Mahasiswa;
+use App\MateriPeriode;
 use App\MateriPraktikum;
 
 class UserController extends Controller
@@ -203,5 +205,59 @@ class UserController extends Controller
     $Periode->save();
 
     return redirect(route('DataPeriode'))->with('success', 'Status Data Periode '.$Periode->namaperiode.' Berhasil di Ubah');
+  }
+
+  public function DataMateriPeriode()
+  {
+    $Periode      = Periode::orderBy('id', 'desc')
+                           ->first();
+
+    count($Periode) ? $IdPeriode = $Periode->id : $IdPeriode = '01012011';;
+
+    $MateriPeriode = MateriPeriode::where('periode_id', $IdPeriode)
+                                  ->get();
+
+    return view('user.DataMateriPeriode', ['Periode' => $Periode, 'MateriPeriode' => $MateriPeriode]);
+  }
+
+  public function TambahDataMateriPeriode()
+  {
+    $Periode         = Periode::orderBy('id', 'desc')
+                              ->first();
+    $MateriPraktikum = MateriPraktikum::all();
+    $MateriPeriode   = MateriPeriode::where('periode_id', $Periode->id)
+                                    ->get();
+
+    if (count($MateriPeriode)) {
+      foreach ($MateriPeriode as $Index=>$DataMateriPeriode) {
+        $AddedIdMateriPeriode[$Index] = $DataMateriPeriode->materi_praktikum_id;
+      }
+    } else {
+      $AddedIdMateriPeriode[112011] = 1111;
+    }
+
+    return view('user.TambahDataMateriPeriode', ['MateriPraktikum' => $MateriPraktikum, 'AddedIdMateriPeriode' => $AddedIdMateriPeriode]);
+  }
+
+  public function StatusDataMateriPeriode($Id, $FromRoute)
+  {
+    $IdMateri  = IDCrypt::Decrypt($Id);
+    $IdPeriode = Periode::orderBy('id', 'desc')
+                        ->first()
+                        ->id;
+    $MateriPeriode = MateriPeriode::where('periode_id', $IdPeriode)
+                                  ->where('materi_praktikum_id', $IdMateri)
+                                  ->get();
+    if (count($MateriPeriode)) {
+      $Materi = MateriPeriode::find($MateriPeriode->first()->id);
+      $Materi->delete();
+    }else{
+      $MateriPeriode = new MateriPeriode;
+      $MateriPeriode->periode_id          = $IdPeriode;
+      $MateriPeriode->materi_praktikum_id = $IdMateri;
+      $MateriPeriode->save();
+    }
+
+    return redirect(route($FromRoute))->with('success', 'Berhasil');
   }
 }

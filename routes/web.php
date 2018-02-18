@@ -38,7 +38,6 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-materi/{Id}/edit', 'UserController@EditDataMateri')->name('EditDataMateri');
   Route::POST('/data-materi/{Id}/edit', 'UserController@submitEditDataMateri')->name('submitEditDataMateri');
   Route::GET('/data-materi/{Id}/hapus', 'UserController@HapusDataMateri')->name('HapusDataMateri');
-
   // Periode
   Route::GET('/data-periode', 'UserController@DataPeriode')->name('DataPeriode');
   Route::GET('/data-periode/tambah', 'UserController@TambahDataPeriode')->name('TambahDataPeriode');
@@ -46,6 +45,10 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-periode/{Id}/edit', 'UserController@EditDataPeriode')->name('EditDataPeriode');
   Route::POST('/data-periode/{Id}/edit', 'UserController@submitEditDataPeriode')->name('submitEditDataPeriode');
   Route::GET('/data-periode/{Id}/status', 'UserController@UbahStatusDataPeriode')->name('UbahStatusDataPeriode');
+  // MateriPeriode
+  Route::GET('/data-materiperiode', 'UserController@DataMateriPeriode')->name('DataMateriPeriode');
+  Route::GET('/data-materiperiode/tambah', 'UserController@TambahDataMateriPeriode')->name('TambahDataMateriPeriode');
+  Route::GET('/data-materiperiode/{id}/status/{fromroute}', 'UserController@StatusDataMateriPeriode')->name('StatusDataMateriPeriode');
 
 });
 
