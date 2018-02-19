@@ -11,7 +11,7 @@
               <input type="text" class="form-control" placeholder="NIDN" name="nidn" value="{{old('nidn')}}" required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
             </div>
             <div>
-              <input type="text" class="form-control" placeholder="Nama" name="nama" value="{{old('nama')}}" required pattern="(.,[a-z]\s)(.,[A-Z]\s).{6,}+" title="Input hanya boleh huruf">
+              <input type="text" class="form-control" placeholder="Nama" name="nama" value="{{old('nama')}}" required pattern="(.,[a-z]\s)(.,[A-Z]\s).{6,}+" title="Input tidak menggunakan angka">
             </div>
             <div>
               <input type="text" class="form-control" placeholder="No Handphone" name="nohp" value="{{old('nohp')}}" required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
