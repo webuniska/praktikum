@@ -11,10 +11,10 @@
               <input type="text" class="form-control" placeholder="NPM" name="npm" value="{{old('npm')}}" required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
             </div>
             <div>
-              <input type="text" class="form-control" placeholder="Nama" name="nama" value="{{old('nama')}}" required pattern="[a-zA-Z\s]+" title="Input hanya boleh huruf">
+              <input type="text" class="form-control" placeholder="Nama" name="nama" value="{{old('nama')}}" required pattern="(.,[a-z]\s)(.,[A-Z]\s).{6,}+" title="Input tidak menggunakan angka">
             </div>
             <div>
-              <input type="text" class="form-control" placeholder="No Handphone" name="nohp" value="{{old('nohp')}}" required  pattern="[0-9]+" title="Input tidak menggunakan spasi">
+              <input type="text" class="form-control" placeholder="No Handphone" name="nohp" value="{{old('nohp')}}" required  pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
             </div>
             <div>
               <input type="email" class="form-control" placeholder="E-Mail" name="email" value="{{old('email')}}" required>
@@ -27,7 +27,7 @@
             </select>
             <hr>
             <div>
-              <input type="text" class="form-control" placeholder="Username" name="username" value="{{old('username')}}" required pattern="^[A-Za-z0-9_]" title="Input tidak menggunakan spasi">
+              <input type="text" class="form-control" placeholder="Username" name="username" value="{{old('username')}}" required pattern="^[A-Za-z0-9_.,]" title="Input tidak menggunakan spasi">
             </div>
             <div>
               <input type="password" class="form-control" placeholder="Password" name="password" required>
