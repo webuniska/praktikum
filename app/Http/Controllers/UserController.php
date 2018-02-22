@@ -11,6 +11,7 @@ use IDCrypt;
 use Tanggal;
 use DataUser;
 use ArrayHelper;
+use App\Admin;
 use App\User;
 use App\Kelas;
 use App\Periode;
@@ -259,5 +260,10 @@ class UserController extends Controller
     }
 
     return redirect(route($FromRoute))->with('success', 'Berhasil');
+  }
+
+  public function DataAdmin()
+  {
+    return view('user.DataAdmin');
   }
 }
