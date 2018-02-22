@@ -266,4 +266,9 @@ class UserController extends Controller
   {
     return view('user.DataAdmin');
   }
+
+  public function TambahDataAdmin()
+  {
+    return view('user.TambahDataAdmin');
+  }
 }

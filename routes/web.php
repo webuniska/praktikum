@@ -52,7 +52,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   //User
   //Data Admin
-  Route::get('/data-admin', 'UserController@DataAdmin')->name('DataAdmin');
+  Route::GET('/data-admin', 'UserController@DataAdmin')->name('DataAdmin');
+  Route::GET('/data-admin/tambah', 'UserController@TambahDataAdmin')->name('TambahDataAdmin');
 
 });
 
