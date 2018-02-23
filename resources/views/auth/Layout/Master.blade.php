@@ -12,21 +12,11 @@
 </head>
 <body class="login" id="body">
   <script type="text/javascript">
-    @if (count($errors) != 0)
-      swal({
-        title: "Error",
-        text: "{{$errors->first()}}",
-        icon: "error",
-        button: "OK",
-      });
-    @endif
     @if (session('success'))
-      swal({
-        title: "Berhasil",
-        text: "{{session('success')}}",
-        icon: "success",
-        button: "OK",
-      });
+      notif('success', 'Berhasil', '{{session('success')}}');
+    @endif
+    @if (count($errors) != 0)
+      notif('error', 'Error', '{{$errors->first()}}');
     @endif
   </script>
   @yield('content')
