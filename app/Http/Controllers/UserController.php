@@ -309,8 +309,8 @@ class UserController extends Controller
   public function EditDataAdmin($Id)
   {
     $Id = IDCrypt::Decrypt($Id);
-    $DataAdmin = Admin::find($Id);
+    $Admin = Admin::find($Id);
 
-    return view('user.EditDataAdmin');
+    return view('user.EditDataAdmin', ['Admin'=>$Admin]);
   }
 }

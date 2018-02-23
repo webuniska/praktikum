@@ -56,6 +56,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::POST('/data-admin/tambah', 'UserController@submitTambahDataAdmin')
        ->name('submitTambahDataAdmin');
   Route::GET('/data-admin/{id}/edit', 'UserController@EditDataAdmin')->name('EditDataAdmin');
+  Route::POST('/data-admin/{id}/edit', 'UserController@submitEditDataAdmin')->name('submitEditDataAdmin');
   Route::GET('/data-admin/{id}/hapus', 'UserController@HapusDataAdmin')->name('HapusDataAdmin');
 
 });
