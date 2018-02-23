@@ -26,33 +26,31 @@
                     <tr>
                       <th>#</th>
                       <th>No .Induk</th>
-                      <th>Username</th>
                       <th>Nama</th>
-                      <th>No. Hp</th>
-                      <th>Email</th>
-                      <th>Foto</th>
+                      <th>Username</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($Admin as $Index=>$DataAdmin)
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$Index+=1}}</td>
+                        <td>{{$DataAdmin->nomorinduk}}</td>
+                        <td>{{$DataAdmin->nama}}</td>
+                        <td>{{$DataAdmin->User->username}}</td>
                         <td class="text-center">
-                          <button class="btn-xs btn-info" onclick="">
+                          <button class="btn-xs btn-primary" onclick="">
+                            <i class="fa fa-info"></i> Info
+                          </button>
+                          <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
                             <i class="fa fa-pencil"></i> Edit
                           </button>
-                          <button class="btn-xs btn-danger" onclick="">
+                          <button class="btn-xs btn-danger" onclick="hapus('{{route('HapusDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
                             <i class="fa fa-trash"></i> Hapus
                           </button>
                         </td>
                       </tr>
-
+                    @endforeach
                   </tbody>
                 </div>
               </table>

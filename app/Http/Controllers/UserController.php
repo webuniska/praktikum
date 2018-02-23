@@ -264,7 +264,9 @@ class UserController extends Controller
 
   public function DataAdmin()
   {
-    return view('user.DataAdmin');
+    $Admin = Admin::all();
+
+    return view('user.DataAdmin', ['Admin' => $Admin]);
   }
 
   public function TambahDataAdmin()
