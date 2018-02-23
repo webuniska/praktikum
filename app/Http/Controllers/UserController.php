@@ -283,7 +283,7 @@ class UserController extends Controller
     $User  = new User;
 
     $User->username = $request->username;
-    $User->password = $request->password;
+    $User->password = bcrypt($request->password);;
     $User->tipe     = 2;
     $User->save();
 
@@ -324,8 +324,14 @@ class UserController extends Controller
   {
     $Id = IDCrypt::Decrypt($Id);
     $Admin = Admin::find($Id);
+    $User = User::find($Admin->user_id);
 
-    $DataAdmin = $Admin->delete();
+    if ($Admin->foto != 'default.png') {
+      File::delete('images/User/Admin/'.$Admin->foto);
+    }
+
+    $Admin->delete();
+    $User->delete();
 
     return redirect(route('DataAdmin'))->with('success', 'Data Admin Berhasil di Hapus');
   }
