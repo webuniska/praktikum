@@ -276,10 +276,14 @@ class UserController extends Controller
 
   public function submitTambahDataAdmin(Request $request)
   {
+    $this->validate($request, [
+      'username' => 'unique:users,username',
+    ]);
+
     $User  = new User;
 
     $User->username = $request->username;
-    $User->password = $request->password;
+    $User->password = bcrypt($request->password);;
     $User->tipe     = 2;
     $User->save();
 
@@ -299,11 +303,13 @@ class UserController extends Controller
       $Foto     = $FotoName.'.'.$FotoExt;
       $request->foto->move('images/User/Admin', $Foto);
       $Admin->foto = $Foto;
+    }else {
+      $Admin->foto = 'default.png';
     }
     $Admin->user_id = $IdUser;
     $Admin->save();
 
-    return redirect(route('DataAdmin'))->with('success', 'Status Data Admin '.$request->nama.' Berhasil di Tambah');
+    return redirect(route('DataAdmin'))->with('success', 'Data Admin '.$request->nama.' Berhasil di Tambah');
   }
 
   public function EditDataAdmin($Id)
@@ -312,5 +318,21 @@ class UserController extends Controller
     $Admin = Admin::find($Id);
 
     return view('user.EditDataAdmin', ['Admin'=>$Admin]);
+  }
+
+  public function HapusDataAdmin($Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $Admin = Admin::find($Id);
+    $User = User::find($Admin->user_id);
+
+    if ($Admin->foto != 'default.png') {
+      File::delete('images/User/Admin/'.$Admin->foto);
+    }
+
+    $Admin->delete();
+    $User->delete();
+
+    return redirect(route('DataAdmin'))->with('success', 'Data Admin Berhasil di Hapus');
   }
 }

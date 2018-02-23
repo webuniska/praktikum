@@ -27,7 +27,7 @@
                     No. Induk
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" value="{{old('nomorinduk')}}" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -35,7 +35,7 @@
                     Nama
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value="{{old('nama')}}" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -43,7 +43,7 @@
                     No. Hp
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" value="{{old('nohp')}}" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -51,7 +51,7 @@
                     Email
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="email" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="email" value="{{old('email')}}" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -68,7 +68,7 @@
                     Username
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" value="{{old('username')}}" required>
                   </div>
                 </div>
                 <div class="form-group">
