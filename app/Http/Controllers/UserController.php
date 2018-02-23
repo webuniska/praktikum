@@ -273,4 +273,44 @@ class UserController extends Controller
   {
     return view('user.TambahDataAdmin');
   }
+
+  public function submitTambahDataAdmin(Request $request)
+  {
+    $User  = new User;
+
+    $User->username = $request->username;
+    $User->password = $request->password;
+    $User->tipe     = 2;
+    $User->save();
+
+    $IdUser = User::orderBy('id', 'desc')
+                  ->first()
+                  ->id;
+
+    $Admin = new Admin;
+
+    $Admin->nomorinduk = $request->nomorinduk;
+    $Admin->nama       = $request->nama;
+    $Admin->nohp       = $request->nohp;
+    $Admin->email      = $request->email;
+    if ($request->foto) {
+      $FotoExt  = $request->foto->getClientOriginalExtension();
+      $FotoName = $request->nama.' - '.Tanggal::Output(Carbon::now());
+      $Foto     = $FotoName.'.'.$FotoExt;
+      $request->foto->move('images/User/Admin', $Foto);
+      $Admin->foto = $Foto;
+    }
+    $Admin->user_id = $IdUser;
+    $Admin->save();
+
+    return redirect(route('DataAdmin'))->with('success', 'Status Data Admin '.$request->nama.' Berhasil di Tambah');
+  }
+
+  public function EditDataAdmin($Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $DataAdmin = Admin::find($Id);
+
+    return view('user.EditDataAdmin');
+  }
 }

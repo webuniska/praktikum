@@ -50,10 +50,13 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-materiperiode/tambah', 'UserController@TambahDataMateriPeriode')->name('TambahDataMateriPeriode');
   Route::GET('/data-materiperiode/{id}/status/{fromroute}', 'UserController@StatusDataMateriPeriode')->name('StatusDataMateriPeriode');
 
-  //User
   //Data Admin
   Route::GET('/data-admin', 'UserController@DataAdmin')->name('DataAdmin');
   Route::GET('/data-admin/tambah', 'UserController@TambahDataAdmin')->name('TambahDataAdmin');
+  Route::POST('/data-admin/tambah', 'UserController@submitTambahDataAdmin')
+       ->name('submitTambahDataAdmin');
+  Route::GET('/data-admin/{id}/edit', 'UserController@EditDataAdmin')->name('EditDataAdmin');
+  Route::GET('/data-admin/{id}/hapus', 'UserController@HapusDataAdmin')->name('HapusDataAdmin');
 
 });
 

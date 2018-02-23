@@ -20,7 +20,7 @@
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-              {!! Form::open(['url'=>route('submitTambahDataKelas'),'files'=>true,'class'=>'register-form', 'method' => 'POST', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+              {!!Form::open(['url'=>route('submitTambahDataAdmin'),'files'=>true,'class'=>'register-form', 'method' => 'POST', 'class' => 'form-horizontal', 'role' => 'form']) !!}
                 {{ csrf_field() }}
                 <div class="form-group">
                   <label class="control-label col-md-2 col-sm-2 col-xs-12">
@@ -59,9 +59,10 @@
                     Foto
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="file" class="form-control col-md-12 col-xs-12" name="foto" required>
+                    <input type="file" class="form-control col-md-12 col-xs-12" name="foto">
                   </div>
                 </div>
+                <hr>
                 <div class="form-group">
                   <label class="control-label col-md-2 col-sm-2 col-xs-12">
                     Username
@@ -76,14 +77,6 @@
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
                     <input type="text" class="form-control col-md-12 col-xs-12" name="password" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-md-2 col-sm-2 col-xs-12">
-                    Ulangi Password
-                  </label>
-                  <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="password_confirmation" required>
                   </div>
                 </div>
                 <div class="form-group">
