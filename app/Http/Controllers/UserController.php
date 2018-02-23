@@ -309,7 +309,7 @@ class UserController extends Controller
     $Admin->user_id = $IdUser;
     $Admin->save();
 
-    return redirect(route('DataAdmin'))->with('success', 'Status Data Admin '.$request->nama.' Berhasil di Tambah');
+    return redirect(route('DataAdmin'))->with('success', 'Data Admin '.$request->nama.' Berhasil di Tambah');
   }
 
   public function EditDataAdmin($Id)
@@ -318,5 +318,15 @@ class UserController extends Controller
     $DataAdmin = Admin::find($Id);
 
     return view('user.EditDataAdmin');
+  }
+
+  public function HapusDataAdmin($Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $Admin = Admin::find($Id);
+
+    $DataAdmin = $Admin->delete();
+
+    return redirect(route('DataAdmin'))->with('success', 'Data Admin Berhasil di Hapus');
   }
 }
