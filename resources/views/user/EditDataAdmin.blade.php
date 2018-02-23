@@ -59,7 +59,7 @@
                     Foto
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="file" class="form-control col-md-12 col-xs-12" name="foto" required>
+                    <input type="file" class="form-control col-md-12 col-xs-12" name="foto" >
                     <label class="control-label text-left col-md-3 col-sm-2 col-xs-12">
                       Isi foto jika ingin di ganti
                     </label>
@@ -78,7 +78,7 @@
                     Password
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="password" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="password" placeholder="Isi jika ingin mengubah password">
                   </div>
                 </div>
                 <div class="form-group">

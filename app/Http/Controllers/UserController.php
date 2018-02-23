@@ -319,6 +319,38 @@ class UserController extends Controller
 
     return view('user.EditDataAdmin', ['Admin'=>$Admin]);
   }
+  public function submitEditDataAdmin(Request $request, $Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $Admin = Admin::find($Id);
+    $User  = User::find($Admin->user_id);
+
+    $this->validate($request, [
+      'username' => 'unique:users,username,'.$User->username,
+    ]);
+
+    $User->username = $request->username;
+    $User->password = bcrypt($request->password);;
+    $User->tipe     = 2;
+    $User->save();
+
+    $Admin->nomorinduk = $request->nomorinduk;
+    $Admin->nama       = $request->nama;
+    $Admin->nohp       = $request->nohp;
+    $Admin->email      = $request->email;
+    if ($request->foto) {
+      $FotoExt  = $request->foto->getClientOriginalExtension();
+      $FotoName = $request->nama.' - '.Tanggal::Output(Carbon::now());
+      $Foto     = $FotoName.'.'.$FotoExt;
+      $request->foto->move('images/User/Admin', $Foto);
+      $Admin->foto = $Foto;
+    }else {
+      $Admin->foto = 'default.png';
+    }
+    $Admin->save();
+
+    return redirect(route('DataAdmin'))->with('success', 'Data Admin '.$request->nama.' Berhasil di Ubah');
+  }
 
   public function HapusDataAdmin($Id)
   {
