@@ -276,6 +276,10 @@ class UserController extends Controller
 
   public function submitTambahDataAdmin(Request $request)
   {
+    $this->validate($request, [
+      'username' => 'unique:users,username',
+    ]);
+
     $User  = new User;
 
     $User->username = $request->username;
@@ -299,6 +303,8 @@ class UserController extends Controller
       $Foto     = $FotoName.'.'.$FotoExt;
       $request->foto->move('images/User/Admin', $Foto);
       $Admin->foto = $Foto;
+    }else {
+      $Admin->foto = 'default.png';
     }
     $Admin->user_id = $IdUser;
     $Admin->save();

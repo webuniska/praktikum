@@ -196,4 +196,7 @@
   @if (session('success'))
     notif('success', 'Berhasil', '{{session('success')}}');
   @endif
+  @if (count($errors) != 0)
+    notif('error', 'Error', '{{$errors->first()}}');
+  @endif
 </script>
