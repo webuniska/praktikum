@@ -27,7 +27,7 @@
                     No. Induk
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" value="{{$Admin->nomorinduk}}" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -35,7 +35,7 @@
                     Nama
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value="{{$Admin->nama}}" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -43,7 +43,7 @@
                     No. Hp
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" value="{{$Admin->nohp}}" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -51,7 +51,7 @@
                     Email
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="email" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="email" value="{{$Admin->email}}" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -60,6 +60,9 @@
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
                     <input type="file" class="form-control col-md-12 col-xs-12" name="foto" required>
+                    <label class="control-label text-left col-md-3 col-sm-2 col-xs-12">
+                      Isi foto jika ingin di ganti
+                    </label>
                   </div>
                 </div>
                 <div class="form-group">
@@ -67,7 +70,7 @@
                     Username
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" value="{{$Admin->User->username}}" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -76,14 +79,6 @@
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
                     <input type="text" class="form-control col-md-12 col-xs-12" name="password" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label col-md-2 col-sm-2 col-xs-12">
-                    Ulangi Password
-                  </label>
-                  <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="password_confirmation" required>
                   </div>
                 </div>
                 <div class="form-group">
