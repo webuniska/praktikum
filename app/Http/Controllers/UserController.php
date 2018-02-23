@@ -23,19 +23,19 @@ class UserController extends Controller
 {
   public function Home()
   {
-    return view('User.Home');
+    return view('user.Home');
   }
 
   public function DataKelas()
   {
     $Kelas = Kelas::all();
 
-    return view('User.DataKelas', ['Kelas' => $Kelas]);
+    return view('user.DataKelas', ['Kelas' => $Kelas]);
   }
 
   public function TambahDataKelas()
   {
-    return view('User.TambahDataKelas');
+    return view('user.TambahDataKelas');
   }
 
   public function submitTambahDataKelas(Request $request)
