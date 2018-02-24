@@ -287,7 +287,7 @@ class UserController extends Controller
 
     $User->username = $request->username;
     $User->password = bcrypt($request->password);;
-    $User->tipe     = 2;
+    $User->tipe     = 1;
     $User->save();
 
     $IdUser = User::orderBy('id', 'desc')
@@ -302,9 +302,9 @@ class UserController extends Controller
     $Admin->email      = $request->email;
     if ($request->foto) {
       $FotoExt  = $request->foto->getClientOriginalExtension();
-      $FotoName = $request->nama.' - '.Tanggal::Output(Carbon::now());
+      $FotoName = 'Admin - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
       $Foto     = $FotoName.'.'.$FotoExt;
-      $request->foto->move('images/User/Admin', $Foto);
+      $request->foto->move('images/User', $Foto);
       $Admin->foto = $Foto;
     }else {
       $Admin->foto = 'default.png';
@@ -329,27 +329,30 @@ class UserController extends Controller
     $User  = User::find($Admin->user_id);
 
     $this->validate($request, [
-      'username' => 'unique:users,username,'.$User->username,
+      'username' => [
+          Rule::unique('users')->ignore($User->username, 'username'),
+        ],
     ]);
 
     $User->username = $request->username;
-    $User->password = bcrypt($request->password);;
-    $User->tipe     = 2;
-    $User->save();
+    $User->password = bcrypt($request->password);
 
     $Admin->nomorinduk = $request->nomorinduk;
     $Admin->nama       = $request->nama;
     $Admin->nohp       = $request->nohp;
     $Admin->email      = $request->email;
     if ($request->foto) {
+      if ($Admin->foto != 'default.png') {
+        File::delete('images/User/'.$Admin->foto);
+      }
       $FotoExt  = $request->foto->getClientOriginalExtension();
-      $FotoName = $request->nama.' - '.Tanggal::Output(Carbon::now());
+      $FotoName = 'Admin - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
       $Foto     = $FotoName.'.'.$FotoExt;
-      $request->foto->move('images/User/Admin', $Foto);
+      $request->foto->move('images/User', $Foto);
       $Admin->foto = $Foto;
-    }else {
-      $Admin->foto = 'default.png';
     }
+
+    $User->save();
     $Admin->save();
 
     return redirect(route('DataAdmin'))->with('success', 'Data Admin '.$request->nama.' Berhasil di Ubah');
@@ -362,7 +365,7 @@ class UserController extends Controller
     $User = User::find($Admin->user_id);
 
     if ($Admin->foto != 'default.png') {
-      File::delete('images/User/Admin/'.$Admin->foto);
+      File::delete('images/User/'.$Admin->foto);
     }
 
     $Admin->delete();
