@@ -27,7 +27,7 @@
                     No. Induk
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" value=" " required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" value=" " required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -43,7 +43,7 @@
                     No. Hp
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" value=" " required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" value=" ">
                   </div>
                 </div>
                 <div class="form-group">
@@ -80,7 +80,7 @@
                     Username
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" value=" " required pattern="^[A-Za-z0-9]{6,}$" title="Input tidak menggunakan spasi dan dan minimal 6 karakter">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" value=" " required>
                   </div>
                 </div>
                 <div class="form-group">
