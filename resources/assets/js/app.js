@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-require('./custom/vendors/bootstrap/dist/js/bootstrap.min');
+// require('./custom/vendors/bootstrap/dist/js/bootstrap.min');
 require('./custom/sweetalert');
 require('./custom/custom-frq');
 require('./custom/vendors/fastclick/lib/fastclick');
