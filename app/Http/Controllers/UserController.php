@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 use Auth;
 use File;
@@ -277,7 +278,9 @@ class UserController extends Controller
   public function submitTambahDataAdmin(Request $request)
   {
     $this->validate($request, [
-      'username' => 'unique:users,username',
+      'username' => [
+          Rule::unique('users')
+        ],
     ]);
 
     $User  = new User;
