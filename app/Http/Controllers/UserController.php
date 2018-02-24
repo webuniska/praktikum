@@ -335,7 +335,9 @@ class UserController extends Controller
     ]);
 
     $User->username = $request->username;
-    $User->password = bcrypt($request->password);
+    if ($request->password) {
+      $User->password = bcrypt($request->password);
+    }
 
     $Admin->nomorinduk = $request->nomorinduk;
     $Admin->nama       = $request->nama;

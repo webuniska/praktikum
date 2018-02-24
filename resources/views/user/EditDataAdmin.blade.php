@@ -51,7 +51,7 @@
                     Email
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="email" value="{{$Admin->email}}" required>
+                    <input type="email" class="form-control col-md-12 col-xs-12" name="email" value="{{$Admin->email}}" required>
                   </div>
                 </div>
                 <div class="form-group">
