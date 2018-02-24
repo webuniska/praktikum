@@ -21,34 +21,70 @@ Route::POST('/register-mahasiswa', 'Auth\RegisterController@submitRegisterMahasi
 Route::GET('/logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => ['UserMiddleware']], function () {
-  Route::GET('/home', 'UserController@Home')->name('Home');
+  Route::GET('/home', 'UserController@Home')
+       ->name('Home');
 
   //Admin
   //Kelas
-  Route::GET('/data-kelas', 'UserController@DataKelas')->name('DataKelas');
-  Route::GET('/data-kelas/tambah', 'UserController@TambahDataKelas')->name('TambahDataKelas');
-  Route::POST('/data-kelas/tambah', 'UserController@submitTambahDataKelas')->name('submitTambahDataKelas');
-  Route::GET('/data-kelas/{Id}/edit', 'UserController@EditDataKelas')->name('EditDataKelas');
-  Route::POST('/data-kelas/{Id}/edit', 'UserController@submitEditDataKelas')->name('submitEditDataKelas');
-  Route::GET('/data-kelas/{Id}/hapus', 'UserController@HapusDataKelas')->name('HapusDataKelas');
+  Route::GET('/data-kelas', 'UserController@DataKelas')
+       ->name('DataKelas');
+  Route::GET('/data-kelas/tambah', 'UserController@TambahDataKelas')
+       ->name('TambahDataKelas');
+  Route::POST('/data-kelas/tambah', 'UserController@submitTambahDataKelas')
+       ->name('submitTambahDataKelas');
+  Route::GET('/data-kelas/{Id}/edit', 'UserController@EditDataKelas')
+       ->name('EditDataKelas');
+  Route::POST('/data-kelas/{Id}/edit', 'UserController@submitEditDataKelas')
+       ->name('submitEditDataKelas');
+  Route::GET('/data-kelas/{Id}/hapus', 'UserController@HapusDataKelas')
+       ->name('HapusDataKelas');
   // Materi Praktikum
-  Route::GET('/data-materi', 'UserController@DataMateri')->name('DataMateri');
-  Route::GET('/data-materi/tambah', 'UserController@TambahDataMateri')->name('TambahDataMateri');
-  Route::POST('/data-materi/tambah', 'UserController@submitTambahDataMateri')->name('submitTambahDataMateri');
-  Route::GET('/data-materi/{Id}/edit', 'UserController@EditDataMateri')->name('EditDataMateri');
-  Route::POST('/data-materi/{Id}/edit', 'UserController@submitEditDataMateri')->name('submitEditDataMateri');
-  Route::GET('/data-materi/{Id}/hapus', 'UserController@HapusDataMateri')->name('HapusDataMateri');
+  Route::GET('/data-materi', 'UserController@DataMateri')
+       ->name('DataMateri');
+  Route::GET('/data-materi/tambah', 'UserController@TambahDataMateri')
+       ->name('TambahDataMateri');
+  Route::POST('/data-materi/tambah', 'UserController@submitTambahDataMateri')
+       ->name('submitTambahDataMateri');
+  Route::GET('/data-materi/{Id}/edit', 'UserController@EditDataMateri')
+       ->name('EditDataMateri');
+  Route::POST('/data-materi/{Id}/edit', 'UserController@submitEditDataMateri')
+       ->name('submitEditDataMateri');
+  Route::GET('/data-materi/{Id}/hapus', 'UserController@HapusDataMateri')
+       ->name('HapusDataMateri');
   // Periode
-  Route::GET('/data-periode', 'UserController@DataPeriode')->name('DataPeriode');
-  Route::GET('/data-periode/tambah', 'UserController@TambahDataPeriode')->name('TambahDataPeriode');
-  Route::POST('/data-periode/tambah', 'UserController@submitTambahDataPeriode')->name('submitTambahDataPeriode');
-  Route::GET('/data-periode/{Id}/edit', 'UserController@EditDataPeriode')->name('EditDataPeriode');
-  Route::POST('/data-periode/{Id}/edit', 'UserController@submitEditDataPeriode')->name('submitEditDataPeriode');
-  Route::GET('/data-periode/{Id}/status', 'UserController@UbahStatusDataPeriode')->name('UbahStatusDataPeriode');
+  Route::GET('/data-periode', 'UserController@DataPeriode')
+       ->name('DataPeriode');
+  Route::GET('/data-periode/tambah', 'UserController@TambahDataPeriode')
+       ->name('TambahDataPeriode');
+  Route::POST('/data-periode/tambah', 'UserController@submitTambahDataPeriode')
+       ->name('submitTambahDataPeriode');
+  Route::GET('/data-periode/{Id}/edit', 'UserController@EditDataPeriode')
+       ->name('EditDataPeriode');
+  Route::POST('/data-periode/{Id}/edit', 'UserController@submitEditDataPeriode')
+       ->name('submitEditDataPeriode');
+  Route::GET('/data-periode/{Id}/status', 'UserController@UbahStatusDataPeriode')
+       ->name('UbahStatusDataPeriode');
   // MateriPeriode
-  Route::GET('/data-materiperiode', 'UserController@DataMateriPeriode')->name('DataMateriPeriode');
-  Route::GET('/data-materiperiode/tambah', 'UserController@TambahDataMateriPeriode')->name('TambahDataMateriPeriode');
-  Route::GET('/data-materiperiode/{id}/status/{fromroute}', 'UserController@StatusDataMateriPeriode')->name('StatusDataMateriPeriode');
+  Route::GET('/data-materiperiode', 'UserController@DataMateriPeriode')
+       ->name('DataMateriPeriode');
+  Route::GET('/data-materiperiode/tambah', 'UserController@TambahDataMateriPeriode')
+       ->name('TambahDataMateriPeriode');
+  Route::GET('/data-materiperiode/{id}/status/{fromroute}', 'UserController@StatusDataMateriPeriode')
+       ->name('StatusDataMateriPeriode');
+
+  //Data Admin
+  Route::GET('/data-admin', 'UserController@DataAdmin')
+       ->name('DataAdmin');
+  Route::GET('/data-admin/tambah', 'UserController@TambahDataAdmin')
+       ->name('TambahDataAdmin');
+  Route::POST('/data-admin/tambah', 'UserController@submitTambahDataAdmin')
+       ->name('submitTambahDataAdmin');
+  Route::GET('/data-admin/{id}/edit', 'UserController@EditDataAdmin')
+       ->name('EditDataAdmin');
+  Route::POST('/data-admin/{id}/edit', 'UserController@submitEditDataAdmin')
+       ->name('submitEditDataAdmin');
+  Route::GET('/data-admin/{id}/hapus', 'UserController@HapusDataAdmin')
+       ->name('HapusDataAdmin');
 
 });
 

@@ -43,12 +43,19 @@
               <h3>Admin</h3>
               <ul class="nav side-menu">
                 <li><a href="{{route('Home')}}"><i class="fa fa-home"></i>Home</a></li>
-                <li><a><i class="fa fa-home"></i> Master Data <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-archive"></i> Master Data <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="{{route('DataKelas')}}">Data Kelas</a></li>
                     <li><a href="{{route('DataMateri')}}">Data Materi</a></li>
                     <li><a href="{{route('DataPeriode')}}">Data Periode</a></li>
                     <li><a href="{{route('DataMateriPeriode')}}">Data Materi Periode</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-archive"></i> User Data <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="{{route('DataAdmin')}}">Data Admin</a></li>
+                    <li><a href="#">Data Dosen</a></li>
+                    <li><a href="#">Data Mahasiswa</a></li>
                   </ul>
                 </li>
                 <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
@@ -188,5 +195,8 @@
 <script type="text/javascript">
   @if (session('success'))
     notif('success', 'Berhasil', '{{session('success')}}');
+  @endif
+  @if (count($errors) != 0)
+    notif('error', 'Error', '{{$errors->first()}}');
   @endif
 </script>
