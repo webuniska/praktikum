@@ -76,7 +76,15 @@
                     Password
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="password" required>
+                    <input type="password" class="form-control col-md-12 col-xs-12" name="password" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2 col-sm-2 col-xs-12">
+                    Ulangi Password
+                  </label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="password" class="form-control col-md-12 col-xs-12" name="password_confirmation" required>
                   </div>
                 </div>
                 <div class="form-group">
