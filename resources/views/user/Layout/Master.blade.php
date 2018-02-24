@@ -54,7 +54,7 @@
                 <li><a><i class="fa fa-archive"></i> User Data <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="{{route('DataAdmin')}}">Data Admin</a></li>
-                    <li><a href="#">Data Dosen</a></li>
+                    <li><a href="{{route('DataDosen')}}">Data Dosen</a></li>
                     <li><a href="#">Data Mahasiswa</a></li>
                   </ul>
                 </li>
