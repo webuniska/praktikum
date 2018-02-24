@@ -27,7 +27,7 @@
                     No. Induk
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
                   </div>
                 </div>
                 <div class="form-group">
@@ -35,7 +35,7 @@
                     Nama
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" required pattern="(.,[a-z]\s)(.,[A-Z]\s).{6,}+" title="Input tidak menggunakan angka">
                   </div>
                 </div>
                 <div class="form-group">
@@ -43,7 +43,7 @@
                     No. Hp
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
                   </div>
                 </div>
                 <div class="form-group">
@@ -67,7 +67,7 @@
                     Username
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" required>
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" required pattern="^[A-Za-z0-9_.,]{6,}$" title="Input tidak menggunakan spasi">
                   </div>
                 </div>
                 <div class="form-group">
