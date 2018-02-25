@@ -86,6 +86,12 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-admin/{id}/hapus', 'UserController@HapusDataAdmin')
        ->name('HapusDataAdmin');
 
+  //Data mahasiswa
+  Route::GET('/data-mahasiswa', 'UserController@DataMahasiswa')
+       ->name('DataMahasiswa');
+  Route::GET('/data-mahasiswa/tambah', 'UserController@TambahDataMahasiswa')
+       ->name('TambahDataMahasiswa');
+
 });
 
 

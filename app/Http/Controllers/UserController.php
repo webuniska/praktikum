@@ -375,4 +375,15 @@ class UserController extends Controller
 
     return redirect(route('DataAdmin'))->with('success', 'Data Admin Berhasil di Hapus');
   }
+
+  public function DataMahasiswa()
+  {
+    return view('user.DataMahasiswa');
+  }
+
+  public function TambahDataMahasiswa()
+  {
+    return view('user.TambahDataMahasiswa');
+  }
+
 }
