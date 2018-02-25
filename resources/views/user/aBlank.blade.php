@@ -17,7 +17,7 @@
               <h2>Plain Page</h2>
               <div class="clearfix"></div>
             </div>
-            <div class="x_content" id="vue">
+            <div class="x_content" id="InfoAdmin">
               Add content to the page ...<br>
               Ini Langsung di blade : @{{values['nama']}}
               <button type="button" name="button" v-on:click="adminJson(1)">1</button>

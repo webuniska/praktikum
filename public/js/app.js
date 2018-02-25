@@ -12193,16 +12193,27 @@ window.statusmateriperiode = function (id, route) {
 };
 
 var app = new Vue({
-  el: '#vue',
+  el: '#InfoAdmin',
   data: {
-    values: ''
+    foto: '',
+    nomorinduk: '',
+    nama: '',
+    nohp: '',
+    email: '',
+    username: ''
   },
   methods: {
     adminJson: function adminJson(id) {
       var _this = this;
 
       axios.get('http://localhost:8000/json/data-admin/' + id).then(function (response) {
-        _this.values = response.data;
+        _this.foto = 'images/User/' + response.data.foto;
+        _this.nomorinduk = response.data.nomorinduk;
+        _this.nama = response.data.nama;
+        _this.nohp = response.data.nohp;
+        _this.email = response.data.email;
+        _this.username = response.data.user.username;
+        console.log(response.data.user.username);
       });
     }
   }

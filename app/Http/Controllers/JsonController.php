@@ -10,8 +10,8 @@ use App\Admin;
 class JsonController extends Controller
 {
   public function JsonDataAdmin($Id){
-    // $Id = IDCrypt::Decrypt($Id);
-    $Admin = Admin::find($Id);
+    $Admin = Admin::with('User')
+                  ->find($Id);
 
     return $Admin;
   }

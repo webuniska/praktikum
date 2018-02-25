@@ -119,14 +119,25 @@ window.statusmateriperiode = function (id,route)
 }
 
 const app = new Vue({
-    el: '#vue',
+    el: '#InfoAdmin',
     data: {
-      values: '',
+      foto: '',
+      nomorinduk: '',
+      nama: '',
+      nohp: '',
+      email: '',
+      username: '',
     },
     methods: {
       adminJson(id){
         axios.get('http://localhost:8000/json/data-admin/'+id).then((response) => {
-          this.values = response.data
+          this.foto = 'images/User/'+response.data.foto
+          this.nomorinduk = response.data.nomorinduk
+          this.nama = response.data.nama
+          this.nohp = response.data.nohp
+          this.email = response.data.email
+          this.username = response.data.user.username
+          console.log(response.data.user.username)
         })
       }
     }
