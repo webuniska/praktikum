@@ -117,3 +117,17 @@ window.statusmateriperiode = function (id,route)
 {
   window.location = '/data-materiperiode/'+id+'/status/'+route;
 }
+
+const app = new Vue({
+    el: '#vue',
+    data: {
+      values: '',
+    },
+    methods: {
+      adminJson(id){
+        axios.get('http://localhost:8000/json/data-admin/'+id).then((response) => {
+          this.values = response.data
+        })
+      }
+    }
+});

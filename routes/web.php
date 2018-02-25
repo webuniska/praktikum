@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/blank', function(){
+  return view('user.aBlank');
+});
 Auth::routes();
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
@@ -86,6 +89,9 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-admin/{id}/hapus', 'UserController@HapusDataAdmin')
        ->name('HapusDataAdmin');
 
+  // JSON
+  Route::GET('/json/data-admin/{id}', 'JsonController@JsonDataAdmin')
+       ->name('JsonDataAdmin');
 });
 
 

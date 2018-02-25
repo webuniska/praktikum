@@ -17042,3 +17042,8 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 
 /** /bootstrap-datetimepicker **/
 
+.modal_img {
+  width: 150px !important;
+  margin: 0 !important;
+}
+

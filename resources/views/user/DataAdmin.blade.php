@@ -67,11 +67,11 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Info Data Admin</h5>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body text-center">
+        <img src="{{asset('images/User').'/'.'default.png'}}" alt="01-01-2011" class="img-circle profile_img modal_img">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">
           <i class="fa fa-close"></i>
           Tutup
         </button>

@@ -4,6 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+window.Vue = require('vue');
 require('./bootstrap');
 // require('./custom/vendors/bootstrap/dist/js/bootstrap.min');
 require('./custom/sweetalert');
@@ -36,7 +37,8 @@ require('./custom/custom-frq');
 // require('./custom/vendors/moment/min/moment.min');
 // require('./custom/vendors/bootstrap-daterangepicker/jsdaterangepicker');
 
-// window.Vue = require('vue');
+//vue js
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -45,7 +47,3 @@ require('./custom/custom-frq');
  */
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
-//
-// const app = new Vue({
-//     el: '#app'
-// });
