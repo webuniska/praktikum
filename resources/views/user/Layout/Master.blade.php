@@ -17,7 +17,7 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="nav-md" id="body">
-  <div class="container body">
+  <div class="container body" id="app">
     <div class="main_container">
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">

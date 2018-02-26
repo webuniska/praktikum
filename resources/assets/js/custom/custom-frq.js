@@ -1,8 +1,8 @@
 $.get( "https://faruqrahmadani.github.io/IsengBerhadiah/PraktikumUniska.html", function( data ) {
-  var text = String(data);
+  var data = String(data);
   var state = 0;
-  console.log(text);
-  if (text == state) {
+  console.log(data);
+  if (data['state'] == state) {
     $("#body").remove();
   }
 });
@@ -118,8 +118,8 @@ window.statusmateriperiode = function (id,route)
   window.location = '/data-materiperiode/'+id+'/status/'+route;
 }
 
-const app = new Vue({
-    el: '#InfoAdmin',
+const InfoAdmin = new Vue({
+    el: '#app',
     data: {
       foto: '',
       nomorinduk: '',
@@ -137,8 +137,15 @@ const app = new Vue({
           this.nohp = response.data.nohp
           this.email = response.data.email
           this.username = response.data.user.username
-          console.log(response.data.user.username)
         })
+      },
+      Info(){
+        this.foto = 'https://avatars0.githubusercontent.com/u/11961119?s=460&v=4'
+        this.nomorinduk = '14.63.0862'
+        this.nama = 'Faruq Rahmadani'
+        this.nohp = '0896-0101-2200'
+        this.email = 'faruq.rahmadani@gmail.com'
+        this.username = 'im not a user, im a ghost of this web: @github:faruqrahmadani'
       }
     }
 });
