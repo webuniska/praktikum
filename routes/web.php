@@ -88,9 +88,12 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
   //Data dosen
   Route::GET('/data-dosen', 'UserController@DataDosen')
-        ->name('DataDosen');
+       ->name('DataDosen');
   Route::GET('/data-kelas/tambah', 'UserController@TambahDataDosen')
-        ->name('TambahDataDosen');
+       ->name('TambahDataDosen');
+  Route::GET('/data-dosen/edit', 'UserController@EditDataDosen')
+       ->name('EditDataDosen');
+
 });
 
 

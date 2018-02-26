@@ -385,4 +385,9 @@ class UserController extends Controller
   {
     return view('user.TambahDataDosen');
   }
+
+  public function EditDataDosen()
+  {
+    return view ('user.EditDataDosen');
+  }
 }
