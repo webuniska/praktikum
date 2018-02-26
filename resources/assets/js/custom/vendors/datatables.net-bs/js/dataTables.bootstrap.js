@@ -1,6 +1,6 @@
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
-		define( ['jquery', 'datatables.net'], function ( $ ) {
+		define( ['jquery'], function ( $ ) {
 			return factory( $, window, document );
 		} );
 	}

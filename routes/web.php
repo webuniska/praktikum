@@ -97,6 +97,9 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
 
 // BATAS SUCI
 Route::get('/dashboard', 'UserController@Dashboard')->name('Dashboard');
+ROUTE::GET('/lala', function(){
+  return '{ "state":1, "message":"@dev", "AuthorName":"Universitas Islam Kalimantan", "AuthorNohp":"-", "AuthoEmail":"-", "AuthorFoto":"default.png", }';
+});
 
 
 // Route::get('/home', 'HomeController@index')->name('home');
