@@ -8,9 +8,12 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Praktikum | UNISKA</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body class="login" id="body">
+  <div id="app">
+    @yield('content')
+  </div>
+  <script src="{{ asset('js/app.js') }}"></script>
   <script type="text/javascript">
     @if (session('success'))
       notif('success', 'Berhasil', '{{session('success')}}');
@@ -19,6 +22,5 @@
       notif('error', 'Error', '{{$errors->first()}}');
     @endif
   </script>
-  @yield('content')
 </body>
 </html>
