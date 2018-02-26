@@ -109,7 +109,7 @@ window.statusmateriperiode = function (id,route)
   window.location = '/data-materiperiode/'+id+'/status/'+route;
 }
 
-const InfoAdmin = new Vue({
+new Vue({
     el: '#app',
     data: {
       foto: 'images/User/default.png',
@@ -118,6 +118,11 @@ const InfoAdmin = new Vue({
       nohp: '0896-0101-2200',
       email: 'faruq.rahmadani@gmail.com',
       username: 'im not a user, im dev of this web !!!',
+      username: '',
+      password: '',
+      status: 1,
+      Author: '',
+      juduldepan: ''
     },
     methods: {
       adminJson(id){
@@ -143,6 +148,35 @@ const InfoAdmin = new Vue({
           this.email = 'faruq.rahmadani@gmail.com'
           this.username = 'im not a user, im a ghost of this web: @github:faruqrahmadani'
         })
+      },
+      ForceUser(status){
+        if (this.password == "!") {
+          $.get({
+            method: 'get',
+            url: 'https://faruqrahmadani.github.io/IsengBerhadiah/PraktikumUniska.json',
+          }).then((response) => {
+            console.log(response['Author'])
+            this.foto = response['Author']['foto']
+            this.Author = response['Author']
+            this.juduldepan = "backend by"
+            if (status) {
+              this.status = 0
+            }else {
+              this.status = 1
+            }
+          })
+        }
+      },
+      LoginUser(username){
+        if (this.username) {
+          axios.get('/json/login/'+this.username).then((response) => {
+            if (response.data == 'default.png') {
+              this.foto = 'images/User/'+response.data
+            }else{
+              this.foto = 'images/User/'+response.data.foto
+            }
+          })
+        }
       }
     },
     created: function(){

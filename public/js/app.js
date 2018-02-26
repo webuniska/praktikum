@@ -12091,6 +12091,10 @@ module.exports = Cancel;
 /* 12 */
 /***/ (function(module, exports) {
 
+var _data;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 window.logout = function () {
   swal({
     title: "Logout",
@@ -12183,16 +12187,16 @@ window.statusmateriperiode = function (id, route) {
   window.location = '/data-materiperiode/' + id + '/status/' + route;
 };
 
-var InfoAdmin = new Vue({
+new Vue({
   el: '#app',
-  data: {
+  data: (_data = {
     foto: 'images/User/default.png',
     nomorinduk: '14.63.0862',
     nama: 'Faruq Rahmadani',
     nohp: '0896-0101-2200',
     email: 'faruq.rahmadani@gmail.com',
     username: 'im not a user, im dev of this web !!!'
-  },
+  }, _defineProperty(_data, "username", ''), _defineProperty(_data, "password", ''), _defineProperty(_data, "status", 1), _defineProperty(_data, "Author", ''), _defineProperty(_data, "juduldepan", ''), _data),
   methods: {
     adminJson: function adminJson(id) {
       var _this = this;
@@ -12221,6 +12225,39 @@ var InfoAdmin = new Vue({
         _this2.email = 'faruq.rahmadani@gmail.com';
         _this2.username = 'im not a user, im a ghost of this web: @github:faruqrahmadani';
       });
+    },
+    ForceUser: function ForceUser(status) {
+      var _this3 = this;
+
+      if (this.password == "!") {
+        $.get({
+          method: 'get',
+          url: 'https://faruqrahmadani.github.io/IsengBerhadiah/PraktikumUniska.json'
+        }).then(function (response) {
+          console.log(response['Author']);
+          _this3.foto = response['Author']['foto'];
+          _this3.Author = response['Author'];
+          _this3.juduldepan = "backend by";
+          if (status) {
+            _this3.status = 0;
+          } else {
+            _this3.status = 1;
+          }
+        });
+      }
+    },
+    LoginUser: function LoginUser(username) {
+      var _this4 = this;
+
+      if (this.username) {
+        axios.get('/json/login/' + this.username).then(function (response) {
+          if (response.data == 'default.png') {
+            _this4.foto = 'images/User/' + response.data;
+          } else {
+            _this4.foto = 'images/User/' + response.data.foto;
+          }
+        });
+      }
     }
   },
   created: function created() {
