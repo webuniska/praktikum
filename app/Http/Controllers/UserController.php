@@ -428,8 +428,64 @@ class UserController extends Controller
     return redirect(route('DataDosen'))->with('success', 'Data Dosen '.$request->nama.' Berhasil di Tambah');
   }
 
-  public function EditDataDosen()
+  public function EditDataDosen($Id)
   {
-    return view ('user.EditDataDosen');
+    $Id = IDCrypt::Decrypt($Id);
+    $Dosen = Dosen::find($Id);
+
+    return view('user.EditDataDosen', ['Dosen'=>$Dosen]);
+  }
+  public function submitEditDataDosen(Request $request, $Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $Dosen = Dosen::find($Id);
+    $User  = User::find($Dosen->user_id);
+
+    $this->validate($request, [
+      'username' => [
+          Rule::unique('users')->ignore($User->username, 'username'),
+        ],
+    ]);
+
+    $User->username = $request->username;
+    if ($request->password) {
+      $User->password = bcrypt($request->password);
+    }
+
+    $Dosen->nomorinduk = $request->nomorinduk;
+    $Dosen->nama       = $request->nama;
+    $Dosen->nohp       = $request->nohp;
+    $Dosen->email      = $request->email;
+    if ($request->foto) {
+      if ($Dosen->foto != 'default.png') {
+        File::delete('images/User/'.$Dosen->foto);
+      }
+      $FotoExt  = $request->foto->getClientOriginalExtension();
+      $FotoName = 'Dosen - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
+      $Foto     = $FotoName.'.'.$FotoExt;
+      $request->foto->move('images/User', $Foto);
+      $Dosen->foto = $Foto;
+    }
+    $Dosen->status      = $request->status;
+
+    $User->save();
+    $Dosen->save();
+
+    return redirect(route('DataDosen'))->with('success', 'Data Dosen '.$request->nama.' Berhasil di Ubah');
+  }
+  public function HapusDataDosen($Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $Dosen = Dosen::find($Id);
+    $User = User::find($Dosen->user_id);
+
+    if ($Dosen->foto != 'default.png') {
+      File::delete('images/User/'.$Dosen->foto);
+    }
+
+    $Dosen->delete();
+    $User->delete();
+
+    return redirect(route('DataDosen'))->with('success', 'Data Dosen Berhasil di Hapus');
   }
 }
