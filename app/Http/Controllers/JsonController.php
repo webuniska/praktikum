@@ -10,16 +10,9 @@ use App\Admin;
 
 class JsonController extends Controller
 {
-  public function JsonDataAdmin($Id){
-    $Admin = Admin::with('User')
-                  ->find($Id);
-
-    return $Admin;
-  }
-
   public function JsonLogin($username){
     $User = User::where('username', $username)
-                ->first();
+    ->first();
     if ($User) {
       if ($User->tipe == 1) {
         $DataUser = Admin::where('user_id', $User->id)
@@ -34,5 +27,19 @@ class JsonController extends Controller
       return $DataUser;
     }
     return 'default.png';
+  }
+
+  public function JsonDataAdmin($Id){
+    $Admin = Admin::with('User')
+                  ->find($Id);
+
+    return $Admin;
+  }
+
+  public function JsonDataDosen($Id){
+    $Dosen = Dosen::with('user')
+                  ->find($Id);
+
+    return $Dosen;
   }
 }
