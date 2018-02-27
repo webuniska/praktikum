@@ -27,20 +27,25 @@
                       <th>#</th>
                       <th>No .Induk</th>
                       <th>Nama</th>
-                      <th>Username</th>
+                      <th>Status</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-
+                    @foreach ($Dosen as $Index=>$DataDosen)
                       <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
+                        <td>{{$Index+=1}}</td>
+                        <td>{{$DataDosen->nomorinduk}}</td>
+                        <td>{{$DataDosen->nama}}</td>
                         <td class="text-center">
-                          <button class="btn-xs btn-primary" onclick="">
+                          {!!DataUser::ShowStatusDosen($DataDosen->status)!!}
+                        </td>
+                        <td class="text-center">
+                          <button class="btn-xs btn-primary" @click="dosenJson('{{IDCrypt::Encrypt($DataDosen->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-info"></i> Info
+                          </button>
+                          <button class="btn-xs btn-primary" @click="ubahStatusDosen('{{IDCrypt::Encrypt($DataDosen->id)}}')">
+                            <i class="fa fa-exchange"></i> Ubah Status
                           </button>
                           <button class="btn-xs btn-info" onclick=" ">
                             <i class="fa fa-pencil"></i> Edit
@@ -50,12 +55,54 @@
                           </button>
                         </td>
                       </tr>
-
+                    @endforeach
                   </tbody>
                 </div>
               </table>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" @click.right="Info()">Info Data Admin</h5>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img :src="foto" alt="01-01-2011" class="img-circle profile_img modal_img">
+          </div>
+          <table class="table table-info">
+            <tr>
+              <td>Nomor Induk</td>
+              <td>@{{nomorinduk}}</td>
+            </tr>
+            <tr>
+              <td>Nama</td>
+              <td>@{{nama}}</td>
+            </tr>
+            <tr>
+              <td>Nomor Telepon</td>
+              <td>@{{nohp}}</td>
+            </tr>
+            <tr>
+              <td>E-Mail</td>
+              <td>@{{email}}</td>
+            </tr>
+            <tr>
+              <td>Username</td>
+              <td>@{{username}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">
+            <i class="fa fa-close"></i>
+            Tutup
+          </button>
         </div>
       </div>
     </div>

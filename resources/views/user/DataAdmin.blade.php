@@ -39,7 +39,7 @@
                         <td>{{$DataAdmin->nama}}</td>
                         <td>{{$DataAdmin->User->username}}</td>
                         <td class="text-center">
-                          <button class="btn-xs btn-primary" v-on:click="adminJson({{$DataAdmin->id}})" data-toggle="modal" data-target="#exampleModalCenter">
+                          <button class="btn-xs btn-primary" @click="adminJson('{{IDCrypt::Encrypt($DataAdmin->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-info"></i> Info
                           </button>
                           <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">

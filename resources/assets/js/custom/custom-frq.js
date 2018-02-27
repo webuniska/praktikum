@@ -122,7 +122,8 @@ new Vue({
       password: '',
       status: 1,
       Author: '',
-      juduldepan: ''
+      juduldepan: '',
+      id: ''
     },
     methods: {
       adminJson(id){
@@ -133,6 +134,24 @@ new Vue({
           this.nohp = response.data.nohp
           this.email = response.data.email
           this.username = response.data.user.username
+        })
+      },
+      dosenJson(id){
+        axios.get('/json/data-dosen/'+id).then((response) => {
+          console.log(response)
+          this.foto = 'images/User/'+response.data.foto
+          this.nomorinduk = response.data.nomorinduk
+          this.nama = response.data.nama
+          this.nohp = response.data.nohp
+          this.email = response.data.email
+          this.username = response.data.user.username
+        })
+      },
+      ubahStatusDosen(id){
+        axios.get('/data-dosen/'+id+'/status').then((response) => {
+          if (response.data) {
+            location.reload()
+          }
         })
       },
       Info(){
