@@ -12,8 +12,9 @@ use IDCrypt;
 use Tanggal;
 use DataUser;
 use ArrayHelper;
-use App\Admin;
 use App\User;
+use App\Admin;
+use App\Dosen;
 use App\Kelas;
 use App\Periode;
 use App\Mahasiswa;
@@ -384,6 +385,47 @@ class UserController extends Controller
   public function TambahDataDosen()
   {
     return view('user.TambahDataDosen');
+  }
+
+  public function submitTambahDataDosen(Request $request)
+  {
+    $this->validate($request, [
+      'username' => [
+          Rule::unique('users')
+        ],
+    ]);
+
+    $User  = new User;
+
+    $User->username = $request->username;
+    $User->password = bcrypt($request->password);;
+    $User->tipe     = 2;
+    $User->save();
+
+    $IdUser = User::orderBy('id', 'desc')
+                  ->first()
+                  ->id;
+
+    $Dosen = new Dosen;
+
+    $Dosen->nomorinduk = $request->nomorinduk;
+    $Dosen->nama       = $request->nama;
+    $Dosen->nohp       = $request->nohp;
+    $Dosen->email      = $request->email;
+    if ($request->foto) {
+      $FotoExt  = $request->foto->getClientOriginalExtension();
+      $FotoName = 'Dosen - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
+      $Foto     = $FotoName.'.'.$FotoExt;
+      $request->foto->move('images/User', $Foto);
+      $Dosen->foto = $Foto;
+    }else {
+      $Dosen->foto = 'default.png';
+    }
+    $Dosen->status      = $request->status;
+    $Dosen->user_id = $IdUser;
+    $Dosen->save();
+
+    return redirect(route('DataDosen'))->with('success', 'Data Dosen '.$request->nama.' Berhasil di Tambah');
   }
 
   public function EditDataDosen()
