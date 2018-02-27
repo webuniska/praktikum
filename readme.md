@@ -20,4 +20,19 @@ yg diperlukan untuk jadi kontributor :
 
 ## cara menggunakan
 
-``Pelajari dan googling, mentok? tanya``
+- clone project
+``Ha Ha Ha :V``
+- Install composer
+``just search how to install composer``
+- Install apa yg diperlukan dari project ini
+``composer install``
+- tambahkan file env
+``cp .env.example .env``
+- konfigurasikan file env
+``google adalah teman anda disini :) mentok? tanya``
+- migrasi database
+``php artisan migrate``
+- seed record db utk user admin
+``php artisan db:seed``
+- serve ur project
+``php artisan serve``
