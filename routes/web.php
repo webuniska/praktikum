@@ -89,6 +89,14 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-admin/{id}/hapus', 'UserController@HapusDataAdmin')
        ->name('HapusDataAdmin');
 
+  //Data dosen
+  Route::GET('/data-dosen', 'UserController@DataDosen')
+       ->name('DataDosen');
+  Route::GET('/data-kelas/tambah', 'UserController@TambahDataDosen')
+       ->name('TambahDataDosen');
+  Route::GET('/data-dosen/edit', 'UserController@EditDataDosen')
+       ->name('EditDataDosen');
+
   // JSON
   Route::GET('/json/data-admin/{id}', 'JsonController@JsonDataAdmin')
        ->name('JsonDataAdmin');
