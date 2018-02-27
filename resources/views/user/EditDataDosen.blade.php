@@ -27,7 +27,7 @@
                     No. Induk
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" value=" " required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nomorinduk" value="" required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
                   </div>
                 </div>
                 <div class="form-group">
@@ -35,7 +35,7 @@
                     Nama
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value=" " required pattern="[.,a-zA-Z\s]+" title="Input tidak menggunakan angka dan menggunakan simbol titik (.) dan koma (,)">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value="" required pattern="[.,a-zA-Z\s]+" title="Input tidak menggunakan angka dan menggunakan simbol titik (.) dan koma (,)">
                   </div>
                 </div>
                 <div class="form-group">
@@ -43,7 +43,7 @@
                     No. Hp
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" value=" " required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nohp" value="" required pattern="[0-9]+" title="Input hanya boleh angka dan tidak menggunakan spasi">
                   </div>
                 </div>
                 <div class="form-group">
@@ -51,7 +51,7 @@
                     Email
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="email" class="form-control col-md-12 col-xs-12" name="email" value=" " required>
+                    <input type="email" class="form-control col-md-12 col-xs-12" name="email" value="" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -70,7 +70,7 @@
                     Username
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" value=" " required pattern="^[A-Za-z0-9]{6,}$" title="Input tidak menggunakan spasi, simbol dan minimal 6 karakter">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" value="" required pattern="^[A-Za-z0-9]{6,}$" title="Input tidak menggunakan spasi, simbol dan minimal 6 karakter">
                   </div>
                 </div>
                 <div class="form-group">
