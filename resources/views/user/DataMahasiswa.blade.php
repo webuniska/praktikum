@@ -60,4 +60,46 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" @click.right="Info()">Info Data Mahasiswa</h5>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img :src="foto" alt="01-01-2011" class="img-circle profile_img modal_img">
+          </div>
+          <table class="table table-info">
+            <tr>
+              <td>Nomor Induk</td>
+              <td>@{{nomorinduk}}</td>
+            </tr>
+            <tr>
+              <td>Nama</td>
+              <td>@{{nama}}</td>
+            </tr>
+            <tr>
+              <td>Nomor Telepon</td>
+              <td>@{{nohp}}</td>
+            </tr>
+            <tr>
+              <td>E-Mail</td>
+              <td>@{{email}}</td>
+            </tr>
+            <tr>
+              <td>Username</td>
+              <td>@{{username}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">
+            <i class="fa fa-close"></i>
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection

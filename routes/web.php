@@ -91,7 +91,14 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
        ->name('DataMahasiswa');
   Route::GET('/data-mahasiswa/tambah', 'UserController@TambahDataMahasiswa')
        ->name('TambahDataMahasiswa');
-
+  Route::POST('/data-mahasiswa/tambah', 'UserController@submitTambahDataMahasiswa')
+       ->name('submitTambahDataMahasiswa');
+  Route::GET('/data-mahasiswa/{id}/edit', 'UserController@EditDataMahasiswa')
+      ->name('EditDataMahasiswa');
+  Route::POST('/data-mahasiswa/{id}/edit', 'UserController@submitEditDataMahasiswa')
+      ->name('submitEditDataMahasiswa');
+  Route::GET('/data-mahasiswa/{id}/hapus', 'UserController@HapusDataMahasiswa')
+      ->name('HapusDataMahasiswa');
 });
 
 
