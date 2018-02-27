@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/blank', function(){
+  return view('user.aBlank');
+});
 Auth::routes();
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
@@ -94,8 +97,14 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-dosen/edit', 'UserController@EditDataDosen')
        ->name('EditDataDosen');
 
+  // JSON
+  Route::GET('/json/data-admin/{id}', 'JsonController@JsonDataAdmin')
+       ->name('JsonDataAdmin');
 });
 
+// Json
+Route::GET('/json/login/{username}', 'JsonController@JsonLogin')
+     ->name('JsonLogin');
 
 // BATAS SUCI
 Route::get('/dashboard', 'UserController@Dashboard')->name('Dashboard');
