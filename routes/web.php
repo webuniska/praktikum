@@ -92,13 +92,17 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   //Data dosen
   Route::GET('/data-dosen', 'UserController@DataDosen')
        ->name('DataDosen');
-  Route::GET('/data-kelas/tambah', 'UserController@TambahDataDosen')
+  Route::GET('/data-dosen/tambah', 'UserController@TambahDataDosen')
        ->name('TambahDataDosen');
   Route::GET('/data-dosen/edit', 'UserController@EditDataDosen')
        ->name('EditDataDosen');
+  Route::GET('/data-dosen/{id}/status', 'UserController@UbahStatusDosen')
+       ->name('UbahStatusDosen');
 
   // JSON
   Route::GET('/json/data-admin/{id}', 'JsonController@JsonDataAdmin')
+       ->name('JsonDataAdmin');
+  Route::GET('/json/data-dosen/{id}', 'JsonController@JsonDataDosen')
        ->name('JsonDataAdmin');
 });
 
