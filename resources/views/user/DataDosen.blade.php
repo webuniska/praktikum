@@ -38,7 +38,7 @@
                         <td>{{$DataDosen->nomorinduk}}</td>
                         <td>{{$DataDosen->nama}}</td>
                         <td class="text-center">
-                          {!!DataUser::ShowStatusDosen($DataDosen->status)!!}
+                          <status-dosen :statusdosen="statusDosen" iddosen="{{$DataDosen->id}}"></status-dosen>
                         </td>
                         <td class="text-center">
                           <button class="btn-xs btn-primary" @click="dosenJson('{{IDCrypt::Encrypt($DataDosen->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
