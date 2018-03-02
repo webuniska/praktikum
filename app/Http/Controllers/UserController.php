@@ -403,6 +403,11 @@ class UserController extends Controller
     return view ('user.EditDataDosen');
   }
 
+  public function DataMahasiswa()
+  {
+    return view ('user.DataMahasiswa');
+  }
+
   public function TambahDataMahasiswa()
   {
     return view('user.TambahDataMahasiswa');
