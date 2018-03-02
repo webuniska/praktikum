@@ -376,7 +376,7 @@ class UserController extends Controller
 
     return redirect(route('DataAdmin'))->with('success', 'Data Admin Berhasil di Hapus');
   }
-  
+
   public function DataDosen()
   {
     $Dosen = Dosen::all();
@@ -389,7 +389,7 @@ class UserController extends Controller
     $Dosen = Dosen::find($Id);
     $Dosen->status = $Dosen->status ? 0 : 1;
     $return = $Dosen->save();
-    
+
     return $return ? 1 : 0;
   }
 
@@ -401,6 +401,16 @@ class UserController extends Controller
   public function EditDataDosen()
   {
     return view ('user.EditDataDosen');
+  }
+
+  public function TambahDataMahasiswa()
+  {
+    return view('user.TambahDataMahasiswa');
+  }
+
+  public function EditDataMahasiswa()
+  {
+    return view ('user.EditDataMahasiswa');
   }
 
 }
