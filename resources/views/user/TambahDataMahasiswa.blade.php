@@ -35,7 +35,7 @@
                     Nama
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value="{{old('nama')}}" required pattern="[a-zA-Z\s]+" title="Input tidak menggunakan angka">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value="{{old('nama')}}" required pattern="[a-zA-Z\s]+" title="Input hanya boleh huruf">
                   </div>
                 </div>
                 <div class="form-group">
