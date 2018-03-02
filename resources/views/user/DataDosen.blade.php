@@ -4,7 +4,7 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Data Admin</h3>
+          <h3>Data Dosen</h3>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -13,7 +13,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <button onclick="redirect('{{route('TambahDataAdmin')}}')" class="btn btn-success">
+              <button onclick="redirect('{{route('TambahDataDosen')}}')" class="btn btn-success">
                 <i class="fa fa-plus-circle"></i>
                 Tambah Data
               </button>
@@ -27,25 +27,30 @@
                       <th>#</th>
                       <th>No .Induk</th>
                       <th>Nama</th>
-                      <th>Username</th>
+                      <th>Status</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($Admin as $Index=>$DataAdmin)
+                    @foreach ($Dosen as $Index=>$DataDosen)
                       <tr>
                         <td>{{$Index+=1}}</td>
-                        <td>{{$DataAdmin->nomorinduk}}</td>
-                        <td>{{$DataAdmin->nama}}</td>
-                        <td>{{$DataAdmin->User->username}}</td>
+                        <td>{{$DataDosen->nomorinduk}}</td>
+                        <td>{{$DataDosen->nama}}</td>
                         <td class="text-center">
-                          <button class="btn-xs btn-primary" @click="adminJson('{{IDCrypt::Encrypt($DataAdmin->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
+                          {!!DataUser::ShowStatusDosen($DataDosen->status)!!}
+                        </td>
+                        <td class="text-center">
+                          <button class="btn-xs btn-primary" @click="dosenJson('{{IDCrypt::Encrypt($DataDosen->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-info"></i> Info
                           </button>
-                          <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
+                          <button class="btn-xs btn-primary" @click="ubahStatusDosen('{{IDCrypt::Encrypt($DataDosen->id)}}')">
+                            <i class="fa fa-exchange"></i> Ubah Status
+                          </button>
+                          <button class="btn-xs btn-info" onclick=" ">
                             <i class="fa fa-pencil"></i> Edit
                           </button>
-                          <button class="btn-xs btn-danger" onclick="{{$DataAdmin->id == DataUser::DataUser(Auth::user())->id ? 'cant' : ''}}hapus('{{route('HapusDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
+                          <button class="btn-xs btn-danger" onclick=" ">
                             <i class="fa fa-trash"></i> Hapus
                           </button>
                         </td>

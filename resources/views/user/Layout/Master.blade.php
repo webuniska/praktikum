@@ -12,12 +12,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
   <title>Praktikum Uniska</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="nav-md" id="body">
-  <div class="container body">
+  <div class="container body" id="app">
     <div class="main_container">
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
@@ -54,8 +54,8 @@
                 <li><a><i class="fa fa-archive"></i> User Data <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="{{route('DataAdmin')}}">Data Admin</a></li>
-                    <li><a href="#">Data Dosen</a></li>
-                    <li><a href="{{route('DataMahasiswa')}}">Data Mahasiswa</a></li>
+                    <li><a href="{{route('DataDosen')}}">Data Dosen</a></li>
+                    <li><a href="#">Data Mahasiswa</a></li>
                   </ul>
                 </li>
                 <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>

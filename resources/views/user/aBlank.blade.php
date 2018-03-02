@@ -17,8 +17,11 @@
               <h2>Plain Page</h2>
               <div class="clearfix"></div>
             </div>
-            <div class="x_content">
-              Add content to the page ...
+            <div class="x_content" id="InfoAdmin">
+              Add content to the page ...<br>
+              Ini Langsung di blade : @{{values['nama']}}
+              <button type="button" name="button" v-on:click="adminJson(1)">1</button>
+              <button type="button" name="button" v-on:click="adminJson(3)">3</button>
             </div>
           </div>
         </div>

@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/blank', function(){
+  return view('user.aBlank');
+});
 Auth::routes();
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
@@ -86,21 +89,26 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-admin/{id}/hapus', 'UserController@HapusDataAdmin')
        ->name('HapusDataAdmin');
 
-  //Data mahasiswa
-  Route::GET('/data-mahasiswa', 'UserController@DataMahasiswa')
-       ->name('DataMahasiswa');
-  Route::GET('/data-mahasiswa/tambah', 'UserController@TambahDataMahasiswa')
-       ->name('TambahDataMahasiswa');
-  Route::POST('/data-mahasiswa/tambah', 'UserController@submitTambahDataMahasiswa')
-       ->name('submitTambahDataMahasiswa');
-  Route::GET('/data-mahasiswa/{id}/edit', 'UserController@EditDataMahasiswa')
-      ->name('EditDataMahasiswa');
-  Route::POST('/data-mahasiswa/{id}/edit', 'UserController@submitEditDataMahasiswa')
-      ->name('submitEditDataMahasiswa');
-  Route::GET('/data-mahasiswa/{id}/hapus', 'UserController@HapusDataMahasiswa')
-      ->name('HapusDataMahasiswa');
+  //Data dosen
+  Route::GET('/data-dosen', 'UserController@DataDosen')
+       ->name('DataDosen');
+  Route::GET('/data-dosen/tambah', 'UserController@TambahDataDosen')
+       ->name('TambahDataDosen');
+  Route::GET('/data-dosen/edit', 'UserController@EditDataDosen')
+       ->name('EditDataDosen');
+  Route::GET('/data-dosen/{id}/status', 'UserController@UbahStatusDosen')
+       ->name('UbahStatusDosen');
+
+  // JSON
+  Route::GET('/json/data-admin/{id}', 'JsonController@JsonDataAdmin')
+       ->name('JsonDataAdmin');
+  Route::GET('/json/data-dosen/{id}', 'JsonController@JsonDataDosen')
+       ->name('JsonDataAdmin');
 });
 
+// Json
+Route::GET('/json/login/{username}', 'JsonController@JsonLogin')
+     ->name('JsonLogin');
 
 // BATAS SUCI
 Route::get('/dashboard', 'UserController@Dashboard')->name('Dashboard');
