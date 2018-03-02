@@ -99,7 +99,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-dosen/{id}/status', 'UserController@UbahStatusDosen')
        ->name('UbahStatusDosen');
 
-  //Data dosen
+  //Data mahasiswa
   Route::GET('/data-mahasiswa', 'UserController@DataMahasiswa')
        ->name('DataMahasiswa');
   Route::GET('/data-mahasiswa/tambah', 'UserController@TambahDataMahasiswa')
