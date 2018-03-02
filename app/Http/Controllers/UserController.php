@@ -376,7 +376,7 @@ class UserController extends Controller
 
     return redirect(route('DataAdmin'))->with('success', 'Data Admin Berhasil di Hapus');
   }
-
+  
   public function DataDosen()
   {
     $Dosen = Dosen::all();
@@ -402,4 +402,5 @@ class UserController extends Controller
   {
     return view ('user.EditDataDosen');
   }
+
 }
