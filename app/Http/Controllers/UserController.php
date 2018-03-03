@@ -379,7 +379,9 @@ class UserController extends Controller
 
   public function DataDosen()
   {
-    return view('user.DataDosen');
+    $Dosen = Dosen::all();
+
+    return view('user.DataDosen', ['Dosen' => $Dosen]);
   }
 
   public function TambahDataDosen()

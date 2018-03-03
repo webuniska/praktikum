@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use IDCrypt;
 use App\User;
 use App\Admin;
+use App\Dosen;
 
 class JsonController extends Controller
 {
@@ -15,6 +16,13 @@ class JsonController extends Controller
                   ->find($Id);
 
     return $Admin;
+  }
+
+  public function JsonDataDosen($Id){
+    $Dosen = Dosen::with('User')
+                  ->find($Id);
+
+    return $Dosen;
   }
 
   public function JsonLogin($username){

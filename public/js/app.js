@@ -12210,6 +12210,18 @@ new Vue({
         _this.username = response.data.user.username;
       });
     },
+    dosenJson: function dosenJson(id) {
+      var _this = this;
+
+      axios.get('/json/data-dosen/' + id).then(function (response) {
+        _this.foto = 'images/User/' + response.data.foto;
+        _this.nomorinduk = response.data.nomorinduk;
+        _this.nama = response.data.nama;
+        _this.nohp = response.data.nohp;
+        _this.email = response.data.email;
+        _this.username = response.data.user.username;
+      });
+    },
     Info: function Info() {
       var _this2 = this;
 
@@ -37555,10 +37567,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
   }();
 
   /**
-   * (Internal) Applies css properties to an element, similar to the jQuery 
+   * (Internal) Applies css properties to an element, similar to the jQuery
    * css method.
    *
-   * While this helper does assist with vendor prefixed property names, it 
+   * While this helper does assist with vendor prefixed property names, it
    * does not perform any manipulation of values prior to setting styles.
    */
 
@@ -37654,8 +37666,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
   }
 
   /**
-   * (Internal) Gets a space separated list of the class names on the element. 
-   * The list is wrapped with a single space on each end to facilitate finding 
+   * (Internal) Gets a space separated list of the class names on the element.
+   * The list is wrapped with a single space on each end to facilitate finding
    * matches within the list.
    */
 
