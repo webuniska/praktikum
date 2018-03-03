@@ -45,7 +45,7 @@
                           <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
                             <i class="fa fa-pencil"></i> Edit
                           </button>
-                          <button cgit lass="btn-xs btn-danger" onclick="{{$DataAdmin->id == DataUser::DataUser(Auth::user())->id ? 'cant' : ''}}hapus('{{route('HapusDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
+                          <button class="btn-xs btn-danger" onclick="{{$DataAdmin->id == DataUser::DataUser(Auth::user())->id ? 'cant' : ''}}hapus('{{route('HapusDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
                             <i class="fa fa-trash"></i> Hapus
                           </button>
                         </td>
