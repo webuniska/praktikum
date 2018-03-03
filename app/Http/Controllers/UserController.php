@@ -384,6 +384,15 @@ class UserController extends Controller
     return view('user.DataDosen', ['Dosen' => $Dosen]);
   }
 
+  public function UbahStatusDosen($Id){
+    $Id = IDCrypt::Decrypt($Id);
+    $Dosen = Dosen::find($Id);
+    $Dosen->status = $Dosen->status ? 0 : 1;
+    $return = $Dosen->save();
+
+    return $return ? 1 : 0;
+  }
+
   public function TambahDataDosen()
   {
     return view('user.TambahDataDosen');
@@ -430,6 +439,8 @@ class UserController extends Controller
     return redirect(route('DataDosen'))->with('success', 'Data Dosen '.$request->nama.' Berhasil di Tambah');
   }
 
+
+
   public function EditDataDosen($Id)
   {
     $Id = IDCrypt::Decrypt($Id);
@@ -468,13 +479,13 @@ class UserController extends Controller
       $request->foto->move('images/User', $Foto);
       $Dosen->foto = $Foto;
     }
-    $Dosen->status      = $request->status;
 
     $User->save();
     $Dosen->save();
 
     return redirect(route('DataDosen'))->with('success', 'Data Dosen '.$request->nama.' Berhasil di Ubah');
   }
+
   public function HapusDataDosen($Id)
   {
     $Id = IDCrypt::Decrypt($Id);
@@ -490,4 +501,20 @@ class UserController extends Controller
 
     return redirect(route('DataDosen'))->with('success', 'Data Dosen Berhasil di Hapus');
   }
+
+  public function DataMahasiswa()
+  {
+    return view ('user.DataMahasiswa');
+  }
+
+  public function TambahDataMahasiswa()
+  {
+    return view('user.TambahDataMahasiswa');
+  }
+
+  public function EditDataMahasiswa()
+  {
+    return view ('user.EditDataMahasiswa');
+  }
+
 }

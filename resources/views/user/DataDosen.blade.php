@@ -26,10 +26,7 @@
                     <tr>
                       <th>#</th>
                       <th>No .Induk</th>
-                      <th>Username</th>
                       <th>Nama</th>
-                      <th>No. Telepon</th>
-                      <th>Email</th>
                       <th>Status</th>
                       <th>Aksi</th>
                     </tr>
@@ -39,15 +36,16 @@
                       <tr>
                         <td>{{$Index+=1}}</td>
                         <td>{{$DataDosen->nomorinduk}}</td>
-                        <td>{{$DataDosen->User->username}}</td>
                         <td>{{$DataDosen->nama}}</td>
-                        <td>{{$DataDosen->nohp}}</td>
-                        <td>{{$DataDosen->email}}</td>
-                        <td>{{$DataDosen->status}}</td>
-
                         <td class="text-center">
-                          <button class="btn-xs btn-primary" v-on:click="dosenJson({{$DataDosen->id}})" data-toggle="modal" data-target="#exampleModalCenter">
+                          <status-dosen :statusdosen="statusDosen" iddosen="{{$DataDosen->id}}"></status-dosen>
+                        </td>
+                        <td class="text-center">
+                          <button class="btn-xs btn-primary" @click="dosenJson('{{IDCrypt::Encrypt($DataDosen->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-info"></i> Info
+                          </button>
+                          <button class="btn-xs btn-primary" @click="ubahStatusDosen('{{IDCrypt::Encrypt($DataDosen->id)}}')">
+                            <i class="fa fa-exchange"></i> Ubah Status
                           </button>
                           <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataDosen', ['Id' => IDCrypt::Encrypt($DataDosen->id)])}}')">
                             <i class="fa fa-pencil"></i> Edit

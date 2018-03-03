@@ -39,13 +39,13 @@
                         <td>{{$DataAdmin->nama}}</td>
                         <td>{{$DataAdmin->User->username}}</td>
                         <td class="text-center">
-                          <button class="btn-xs btn-primary" v-on:click="adminJson({{$DataAdmin->id}})" data-toggle="modal" data-target="#exampleModalCenter">
+                          <button class="btn-xs btn-primary" @click="adminJson('{{IDCrypt::Encrypt($DataAdmin->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-info"></i> Info
                           </button>
                           <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
                             <i class="fa fa-pencil"></i> Edit
                           </button>
-                          <button class="btn-xs btn-danger" onclick="{{$DataAdmin->id == DataUser::DataUser(Auth::user())->id ? 'cant' : ''}}hapus('{{route('HapusDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
+                          <button cgit lass="btn-xs btn-danger" onclick="{{$DataAdmin->id == DataUser::DataUser(Auth::user())->id ? 'cant' : ''}}hapus('{{route('HapusDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
                             <i class="fa fa-trash"></i> Hapus
                           </button>
                         </td>
