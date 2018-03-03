@@ -39,10 +39,11 @@ class JsonController extends Controller
   }
 
   public function JsonDataDosen($Id){
-    $Id = IDCrypt::Decrypt($Id);
-    $Dosen = Dosen::with('User')
-                  ->find($Id);
+    $Id = $Id ? IDCrypt::Decrypt($Id) : $Id;
 
-    return $Dosen;
+    $Dosen = $Id ? Dosen::with('User')->find($Id) : Dosen::all()->pluck('status','id');
+
+
+    return $Dosen->toJson();
   }
 }

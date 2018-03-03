@@ -109,8 +109,9 @@ window.statusmateriperiode = function (id,route)
   window.location = '/data-materiperiode/'+id+'/status/'+route;
 }
 
-new Vue({
+app = new Vue({
     el: '#app',
+    props: ['idDosen'],
     data: {
       foto: 'images/User/default.png',
       nomorinduk: '14.63.0862',
@@ -123,7 +124,9 @@ new Vue({
       status: 1,
       Author: '',
       juduldepan: '',
-      id: ''
+      id: '',
+      idDosens: '1',
+      statusDosen: ''
     },
     methods: {
       adminJson(id){
@@ -150,7 +153,9 @@ new Vue({
       ubahStatusDosen(id){
         axios.get('/data-dosen/'+id+'/status').then((response) => {
           if (response.data) {
-            location.reload()
+            axios.get('/json/data-dosen/0').then((response) => {
+              this.statusDosen = response.data
+            })
           }
         })
       },
@@ -208,5 +213,10 @@ new Vue({
         }
         console.log(response['message'])
       })
+      axios.get('/json/data-dosen/0').then((response) => {
+        this.statusDosen = response.data
+      })
     }
 });
+
+Vue.component('status-dosen', require('./../components/StatusDosen.vue'))
