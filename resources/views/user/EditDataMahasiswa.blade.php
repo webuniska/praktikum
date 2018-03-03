@@ -4,7 +4,7 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Edit Data Admin</h3>
+          <h3>Edit Data Mahasiswa</h3>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -13,14 +13,14 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <button onclick="redirect('{{route('DataDosen')}}')" class="btn btn-success">
+              <button onclick="redirect('{{route('DataMahasiswa')}}')" class="btn btn-success">
                 <i class="fa fa-arrow-circle-left"></i>
                 Kembali
               </button>
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-              {!! Form::open(['url'=>route('EditDataDosen',['id' => IDCrypt::Encrypt($Admin->id)]),'files'=>true,'class'=>'register-form', 'method' => 'POST', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+              {!! Form::open(['url'=>route('EditDataMahasiswa',['id' => IDCrypt::Encrypt($Admin->id)]),'files'=>true,'class'=>'register-form', 'method' => 'POST', 'class' => 'form-horizontal', 'role' => 'form']) !!}
                 {{ csrf_field() }}
                 <div class="form-group">
                   <label class="control-label col-md-2 col-sm-2 col-xs-12">
@@ -35,7 +35,7 @@
                     Nama
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value="" required pattern="[.,a-zA-Z\s]+" title="Input tidak menggunakan angka dan menggunakan simbol titik (.) dan koma (,)">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value="" required pattern="[a-zA-Z\s]+" title="Input hanya boleh huruf">
                   </div>
                 </div>
                 <div class="form-group">
