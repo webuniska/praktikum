@@ -39,8 +39,14 @@
                         <td>{{$DataAdmin->nama}}</td>
                         <td>{{$DataAdmin->User->username}}</td>
                         <td class="text-center">
-                          <button class="btn-xs btn-primary" @click="adminJson('{{IDCrypt::Encrypt($DataAdmin->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
+                          <status-dosen :statusdosen="statusDosen" iddosen="{{$DataDosen->id}}"></status-dosen>
+                        </td>
+                        <td class="text-center">
+                          <button class="btn-xs btn-primary" @click="dosenJson('{{IDCrypt::Encrypt($DataDosen->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-info"></i> Info
+                          </button>
+                          <button class="btn-xs btn-primary" @click="ubahStatusDosen('{{IDCrypt::Encrypt($DataDosen->id)}}')">
+                            <i class="fa fa-exchange"></i> Ubah Status
                           </button>
                           <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataAdmin', ['Id' => IDCrypt::Encrypt($DataAdmin->id)])}}')">
                             <i class="fa fa-pencil"></i> Edit

@@ -94,8 +94,14 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
        ->name('DataDosen');
   Route::GET('/data-dosen/tambah', 'UserController@TambahDataDosen')
        ->name('TambahDataDosen');
-  Route::GET('/data-dosen/edit', 'UserController@EditDataDosen')
+  Route::POST('/data-dosen/tambah', 'UserController@submitTambahDataDosen')
+       ->name('submitTambahDataDosen');
+  Route::GET('/data-dosen/{id}/edit', 'UserController@EditDataDosen')
        ->name('EditDataDosen');
+  Route::POST('/data-dosen/{id}/edit', 'UserController@submitEditDataDosen')
+       ->name('submitEditDataDosen');
+  Route::GET('/data-dosen/{id}/hapus', 'UserController@HapusDataDosen')
+       ->name('HapusDataDosen');
   Route::GET('/data-dosen/{id}/status', 'UserController@UbahStatusDosen')
        ->name('UbahStatusDosen');
 
