@@ -96,9 +96,9 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
        ->name('TambahDataDosen');
   Route::POST('/data-dosen/tambah', 'UserController@submitTambahDataDosen')
        ->name('submitTambahDataDosen');
-  Route::GET('/data-dosen/{id}edit', 'UserController@EditDataDosen')
+  Route::GET('/data-dosen/{id}/edit', 'UserController@EditDataDosen')
        ->name('EditDataDosen');
-  Route::POST('/data-dosen/{id}edit', 'UserController@submitEditDataDosen')
+  Route::POST('/data-dosen/{id}/edit', 'UserController@submitEditDataDosen')
        ->name('submitEditDataDosen');
   Route::GET('/data-dosen/{id}/hapus', 'UserController@HapusDataDosen')
        ->name('HapusDataDosen');
@@ -123,7 +123,7 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/json/data-admin/{id}', 'JsonController@JsonDataAdmin')
        ->name('JsonDataAdmin');
   Route::GET('/json/data-dosen/{id}', 'JsonController@JsonDataDosen')
-       ->name('JsonDataDosen');
+       ->name('JsonDataAdmin');
 });
 
 // Json

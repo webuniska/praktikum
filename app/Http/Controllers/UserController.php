@@ -432,7 +432,7 @@ class UserController extends Controller
     }else {
       $Dosen->foto = 'default.png';
     }
-    $Dosen->status      = $request->status;
+  
     $Dosen->user_id = $IdUser;
     $Dosen->save();
 
