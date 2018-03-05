@@ -398,24 +398,106 @@ class UserController extends Controller
     return view('user.TambahDataDosen');
   }
 
-  public function EditDataDosen()
-  {
-    return view ('user.EditDataDosen');
+  public function submitTambahDataDosen(Request $request)
+   {
+     $this->validate($request, [
+      'username' => [
+          Rule::unique('users')
+        ],
+    ]);
+
+    $User  = new User;
+
+    $User->username = $request->username;
+    $User->password = bcrypt($request->password);;
+    $User->tipe     = 2;
+    $User->save();
+
+    $IdUser = User::orderBy('id', 'desc')
+                   ->first()
+                   ->id;
+
+    $Dosen = new Dosen;
+
+    $Dosen->nomorinduk = $request->nomorinduk;
+    $Dosen->nama       = $request->nama;
+    $Dosen->nohp       = $request->nohp;
+    $Dosen->email      = $request->email;
+    if ($request->foto) {
+      $FotoExt  = $request->foto->getClientOriginalExtension();
+      $FotoName = 'Dosen - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
+      $Foto     = $FotoName.'.'.$FotoExt;
+      $request->foto->move('images/User', $Foto);
+      $Dosen->foto = $Foto;
+    }else {
+      $Dosen->foto = 'default.png';
+    }
+    $Dosen->status      = $request->status;
+    $Dosen->user_id = $IdUser;
+    $Dosen->save();
+
+  return redirect(route('DataDosen'))->with('success', 'Data Dosen '.$request->nama.' Berhasil di Tambah');
   }
 
-  public function DataMahasiswa()
-  {
-    return view ('user.DataMahasiswa');
-  }
+  public function EditDataDosen($Id)
+   {
+     $Id = IDCrypt::Decrypt($Id);
+     $Dosen = Dosen::find($Id);
 
-  public function TambahDataMahasiswa()
-  {
-    return view('user.TambahDataMahasiswa');
-  }
+     return view('user.EditDataDosen', ['Dosen'=>$Dosen]);
+   }
+   public function submitEditDataDosen(Request $request, $Id)
+   {
+     $Id = IDCrypt::Decrypt($Id);
+     $Dosen = Dosen::find($Id);
+     $User  = User::find($Dosen->user_id);
 
-  public function EditDataMahasiswa()
-  {
-    return view ('user.EditDataMahasiswa');
-  }
+     $this->validate($request, [
+       'username' => [
+           Rule::unique('users')->ignore($User->username, 'username'),
+         ],
+     ]);
+
+     $User->username = $request->username;
+     if ($request->password) {
+       $User->password = bcrypt($request->password);
+     }
+
+     $Dosen->nomorinduk = $request->nomorinduk;
+     $Dosen->nama       = $request->nama;
+     $Dosen->nohp       = $request->nohp;
+     $Dosen->email      = $request->email;
+     if ($request->foto) {
+       if ($Dosen->foto != 'default.png') {
+         File::delete('images/User/'.$Dosen->foto);
+       }
+       $FotoExt  = $request->foto->getClientOriginalExtension();
+       $FotoName = 'Dosen - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
+       $Foto     = $FotoName.'.'.$FotoExt;
+       $request->foto->move('images/User', $Foto);
+       $Dosen->foto = $Foto;
+     }
+
+     $User->save();
+     $Dosen->save();
+
+     return redirect(route('DataDosen'))->with('success', 'Data Dosen '.$request->nama.' Berhasil di Ubah');
+   }
+
+   public function HapusDataDosen($Id)
+   {
+     $Id = IDCrypt::Decrypt($Id);
+     $Dosen = Dosen::find($Id);
+     $User = User::find($Dosen->user_id);
+
+     if ($Dosen->foto != 'default.png') {
+       File::delete('images/User/'.$Dosen->foto);
+     }
+
+     $Dosen->delete();
+     $User->delete();
+
+     return redirect(route('DataDosen'))->with('success', 'Data Dosen Berhasil di Hapus');
+   }
 
 }
