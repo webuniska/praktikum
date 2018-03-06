@@ -89,34 +89,8 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   Route::GET('/data-admin/{id}/hapus', 'UserController@HapusDataAdmin')
        ->name('HapusDataAdmin');
 
-  //Data dosen
-  Route::GET('/data-dosen', 'UserController@DataDosen')
-       ->name('DataDosen');
-  Route::GET('/data-dosen/tambah', 'UserController@TambahDataDosen')
-       ->name('TambahDataDosen');
-  Route::GET('/data-dosen/edit', 'UserController@EditDataDosen')
-       ->name('EditDataDosen');
-  Route::GET('/data-dosen/{id}/status', 'UserController@UbahStatusDosen')
-       ->name('UbahStatusDosen');
-
-  //Data mahasiswa
-  Route::GET('/data-mahasiswa', 'UserController@DataMahasiswa')
-       ->name('DataMahasiswa');
-  Route::GET('/data-mahasiswa/tambah', 'UserController@TambahDataMahasiswa')
-       ->name('TambahDataMahasiswa');
-  Route::POST('/data-mahasiswa/tambah', 'UserController@submitTambahDataMahasiswa')
-       ->name('submitTambahDataMahasiswa');
-  Route::GET('/data-mahasiswa//edit', 'UserController@EditDataMahasiswa')
-       ->name('EditDataMahasiswa');
-  Route::POST('/data-mahasiswa//edit', 'UserController@submitEditDataMahasiswa')
-       ->name('submitEditDataMahasiswa');
-  Route::GET('/data-mahasiswa//hapus', 'UserController@HapusDataMahasiswa')
-       ->name('HapusDataMahasiswa');
-
   // JSON
   Route::GET('/json/data-admin/{id}', 'JsonController@JsonDataAdmin')
-       ->name('JsonDataAdmin');
-  Route::GET('/json/data-dosen/{id}', 'JsonController@JsonDataDosen')
        ->name('JsonDataAdmin');
 });
 

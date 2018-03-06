@@ -12,9 +12,8 @@ use IDCrypt;
 use Tanggal;
 use DataUser;
 use ArrayHelper;
-use App\User;
 use App\Admin;
-use App\Dosen;
+use App\User;
 use App\Kelas;
 use App\Periode;
 use App\Mahasiswa;
@@ -376,46 +375,4 @@ class UserController extends Controller
 
     return redirect(route('DataAdmin'))->with('success', 'Data Admin Berhasil di Hapus');
   }
-
-  public function DataDosen()
-  {
-    $Dosen = Dosen::all();
-
-    return view('user.DataDosen', ['Dosen' => $Dosen]);
-  }
-
-  public function UbahStatusDosen($Id){
-    $Id = IDCrypt::Decrypt($Id);
-    $Dosen = Dosen::find($Id);
-    $Dosen->status = $Dosen->status ? 0 : 1;
-    $return = $Dosen->save();
-
-    return $return ? 1 : 0;
-  }
-
-  public function TambahDataDosen()
-  {
-    return view('user.TambahDataDosen');
-  }
-
-  public function EditDataDosen()
-  {
-    return view ('user.EditDataDosen');
-  }
-
-  public function DataMahasiswa()
-  {
-    return view ('user.DataMahasiswa');
-  }
-
-  public function TambahDataMahasiswa()
-  {
-    return view('user.TambahDataMahasiswa');
-  }
-
-  public function EditDataMahasiswa()
-  {
-    return view ('user.EditDataMahasiswa');
-  }
-
 }

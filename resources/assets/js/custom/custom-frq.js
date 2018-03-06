@@ -109,9 +109,8 @@ window.statusmateriperiode = function (id,route)
   window.location = '/data-materiperiode/'+id+'/status/'+route;
 }
 
-app = new Vue({
+new Vue({
     el: '#app',
-    props: ['idDosen'],
     data: {
       foto: 'images/User/default.png',
       nomorinduk: '14.63.0862',
@@ -123,10 +122,7 @@ app = new Vue({
       password: '',
       status: 1,
       Author: '',
-      juduldepan: '',
-      id: '',
-      idDosens: '1',
-      statusDosen: ''
+      juduldepan: ''
     },
     methods: {
       adminJson(id){
@@ -137,26 +133,6 @@ app = new Vue({
           this.nohp = response.data.nohp
           this.email = response.data.email
           this.username = response.data.user.username
-        })
-      },
-      dosenJson(id){
-        axios.get('/json/data-dosen/'+id).then((response) => {
-          console.log(response)
-          this.foto = 'images/User/'+response.data.foto
-          this.nomorinduk = response.data.nomorinduk
-          this.nama = response.data.nama
-          this.nohp = response.data.nohp
-          this.email = response.data.email
-          this.username = response.data.user.username
-        })
-      },
-      ubahStatusDosen(id){
-        axios.get('/data-dosen/'+id+'/status').then((response) => {
-          if (response.data) {
-            axios.get('/json/data-dosen/0').then((response) => {
-              this.statusDosen = response.data
-            })
-          }
         })
       },
       Info(){
@@ -213,10 +189,5 @@ app = new Vue({
         }
         console.log(response['message'])
       })
-      axios.get('/json/data-dosen/0').then((response) => {
-        this.statusDosen = response.data
-      })
     }
 });
-
-Vue.component('status-dosen', require('./../components/StatusDosen.vue'))
