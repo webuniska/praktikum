@@ -9,7 +9,7 @@
             <h1>Login</h1>
             <img :src="foto" alt="01-01-2011" class="img-circle profile_img modal_img login_img">
             <div>
-              <input type="text" class="form-control" placeholder="Username" name="username" required v-model="username" @keyup="LoginUser()">
+              <input type="text" class="form-control" placeholder="Username" name="username" required v-model="username" @change="LoginUser()">
             </div>
             <div>
               <input type="password" class="form-control" placeholder="Password" name="password" required @keyup.esc="ForceUser(1)" v-model="password">

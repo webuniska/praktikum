@@ -60,10 +60,10 @@
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
                     <input type="file" class="form-control col-md-12 col-xs-12" name="foto" >
-                    <label class="control-label text-left col-md-3 col-sm-2 col-xs-12">
-                      Isi foto jika ingin di ganti
-                    </label>
                   </div>
+                  <label class="control-label text-left col-md-4 col-sm-4 col-xs-12">
+                    Isi foto jika ingin di ganti.
+                  </label>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-2 col-sm-2 col-xs-12">

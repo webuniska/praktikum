@@ -439,8 +439,6 @@ class UserController extends Controller
     return redirect(route('DataDosen'))->with('success', 'Data Dosen '.$request->nama.' Berhasil di Tambah');
   }
 
-
-
   public function EditDataDosen($Id)
   {
     $Id = IDCrypt::Decrypt($Id);
