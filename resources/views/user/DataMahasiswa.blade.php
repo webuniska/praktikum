@@ -37,6 +37,7 @@
                         <td>{{$Index+=1}}</td>
                         <td>{{$DataMahasiswa->nomorinduk}}</td>
                         <td>{{$DataMahasiswa->nama}}</td>
+                        <td>{{$DataMahasiswa->User->username}}</td>
                         <td class="text-center">
                           <button class="btn-xs btn-primary" @click="dosenJson('{{IDCrypt::Encrypt($DataMahasiswa->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-info"></i> Info
