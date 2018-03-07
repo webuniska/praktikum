@@ -12091,10 +12091,6 @@ module.exports = Cancel;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _data;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 window.logout = function () {
   swal({
     title: "Logout",
@@ -12189,18 +12185,30 @@ window.statusmateriperiode = function (id, route) {
 
 Vue.component('status-dosen', __webpack_require__(54));
 Vue.component('button-ubahstatusdosen', __webpack_require__(82));
+Vue.component('button-header', __webpack_require__(91));
+Vue.component('form-kelas', __webpack_require__(97));
+Vue.component('button-hapus', __webpack_require__(100));
+Vue.component('button-edit', __webpack_require__(103));
+Vue.component('login-form', __webpack_require__(85));
 
 vm = new Vue({
   el: '#app',
   props: ['idDosen'],
-  data: (_data = {
+  data: {
+    datavalue: '',
+    status: 1,
+    formstatus: 'create',
+    urlform: '',
     foto: 'images/User/default.png',
     nomorinduk: '14.63.0862',
     nama: 'Faruq Rahmadani',
     nohp: '0896-0101-2200',
     email: 'faruq.rahmadani@gmail.com',
-    username: 'im not a user, im dev of this web !!!'
-  }, _defineProperty(_data, "username", ''), _defineProperty(_data, "password", ''), _defineProperty(_data, "status", 1), _defineProperty(_data, "Author", ''), _defineProperty(_data, "juduldepan", ''), _defineProperty(_data, "id", ''), _defineProperty(_data, "idDosens", '1'), _defineProperty(_data, "statusDosen", ''), _data),
+    username: 'im not a user, im dev of this web !!!',
+    id: '',
+    idDosens: '1',
+    statusDosen: ''
+  },
   methods: {
     adminJson: function adminJson(id) {
       var _this = this;
@@ -12253,39 +12261,6 @@ vm = new Vue({
         _this4.email = 'faruq.rahmadani@gmail.com';
         _this4.username = 'im not a user, im a ghost of this web: @github:faruqrahmadani';
       });
-    },
-    ForceUser: function ForceUser(status) {
-      var _this5 = this;
-
-      if (this.password == "!") {
-        $.get({
-          method: 'get',
-          url: 'https://faruqrahmadani.github.io/IsengBerhadiah/PraktikumUniska.json'
-        }).then(function (response) {
-          console.log(response['Author']);
-          _this5.foto = response['Author']['foto'];
-          _this5.Author = response['Author'];
-          _this5.juduldepan = "backend by";
-          if (status) {
-            _this5.status = 0;
-          } else {
-            _this5.status = 1;
-          }
-        });
-      }
-    },
-    LoginUser: function LoginUser(username) {
-      var _this6 = this;
-
-      if (this.username) {
-        axios.get('/json/login/' + this.username).then(function (response) {
-          if (response.data == 'default.png') {
-            _this6.foto = 'images/User/' + response.data;
-          } else {
-            _this6.foto = 'images/User/' + response.data.foto;
-          }
-        });
-      }
     }
   },
   created: function created() {
@@ -68649,18 +68624,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     ubahstatusdosen: function ubahstatusdosen(id) {
       var _this = this;
 
-      axios({
-        method: 'get',
-        url: '/api/ubah-status-dosen/' + id,
-        headers: { Authorization: 'Bearer ' + this.auth }
-      }).then(function (response) {
-        axios({
-          method: 'get',
-          url: '/api/status-dosen',
-          headers: { Authorization: 'Bearer ' + _this.auth }
-        }).then(function (response) {
-          vm.statusDosen = response.data;
-        });
+      swal({
+        title: "Ubah Status Dosen",
+        text: "Yakin Ingin Mengubah Status Dosen?",
+        icon: "info",
+        buttons: ["Tidak", "Iya"]
+      }).then(function (hapus) {
+        if (hapus) {
+          axios({
+            method: 'get',
+            url: '/api/ubah-status-dosen/' + id,
+            headers: { Authorization: 'Bearer ' + _this.auth }
+          }).then(function (response) {
+            axios({
+              method: 'get',
+              url: '/api/status-dosen',
+              headers: { Authorization: 'Bearer ' + _this.auth }
+            }).then(function (response) {
+              vm.statusDosen = response.data;
+            });
+          });
+        } else {
+          swal({
+            title: "Batal",
+            text: "Batal Mengubah Status Dosen",
+            icon: "info",
+            timer: 2500
+          });
+        }
       });
     }
   }
@@ -68694,6 +68685,849 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-0923495c", module.exports)
+  }
+}
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(55)
+/* script */
+var __vue_script__ = __webpack_require__(86)
+/* template */
+var __vue_template__ = __webpack_require__(87)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/auth/LoginForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7d840a46", Component.options)
+  } else {
+    hotAPI.reload("data-v-7d840a46", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['token', 'urlform'],
+  data: function data() {
+    return {
+      status: 1,
+      foto: 'images/User/default.png',
+      username: '',
+      password: '',
+      Author: ''
+    };
+  },
+  methods: {
+    LoginUser: function LoginUser() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: '/api/login/' + this.username,
+        headers: { Authorization: 'Bearer ' + this.auth }
+      }).then(function (response) {
+        _this.foto = 'images/User/' + response.data;
+      });
+    },
+    ForceUser: function ForceUser(status) {
+      var _this2 = this;
+
+      if (status) {
+        this.status = 0;
+        if (this.password == "!") {
+          $.get({
+            method: 'get',
+            url: 'https://faruqrahmadani.github.io/IsengBerhadiah/PraktikumUniska.json'
+          }).then(function (response) {
+            _this2.foto = response['Author']['foto'];
+            _this2.Author = response['Author'];
+            _this2.juduldepan = "backend by";
+          });
+        }
+      } else {
+        this.status = 1;
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.status
+    ? _c("div", [
+        _c("form", { attrs: { method: "POST", action: this.urlform } }, [
+          _c("input", {
+            attrs: { type: "hidden", name: "_token", id: "csrf-token" },
+            domProps: { value: _vm.token }
+          }),
+          _vm._v(" "),
+          _c("h1", [_vm._v("Login")]),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "img-circle profile_img modal_img login_img",
+            attrs: { src: _vm.foto, alt: "01-01-2011" }
+          }),
+          _vm._v(" "),
+          _c("div", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.username,
+                  expression: "username"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Username",
+                name: "username",
+                required: ""
+              },
+              domProps: { value: _vm.username },
+              on: {
+                keyup: function($event) {
+                  _vm.LoginUser()
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.username = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.password,
+                  expression: "password"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "password",
+                placeholder: "Password",
+                name: "password",
+                required: ""
+              },
+              domProps: { value: _vm.password },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "esc", 27, $event.key)
+                  ) {
+                    return null
+                  }
+                  _vm.ForceUser(1)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.password = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "clearfix" })
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
+      ])
+    : _c(
+        "div",
+        {
+          on: {
+            click: function($event) {
+              _vm.ForceUser(0)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "text-center" }, [
+            _c("img", {
+              staticClass: "img-circle profile_img modal_img",
+              attrs: { src: _vm.foto, alt: "01-01-2011" }
+            }),
+            _vm._v(" "),
+            _c("h3", [_vm._v(_vm._s(_vm.Author.nama))]),
+            _vm._v(" "),
+            _c("h3", [_vm._v(_vm._s(_vm.Author.email))]),
+            _vm._v(" "),
+            _c("h3", [_vm._v(_vm._s(_vm.Author.github))])
+          ])
+        ]
+      )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("button", { staticClass: "btn btn-success col-md-12" }, [
+        _vm._v("Login")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "separator" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("button", { staticClass: "btn btn-warning col-md-12" }, [
+          _vm._v("Lupa Password")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("a", { attrs: { href: "/register-dosen" } }, [
+            _c("button", { staticClass: "btn btn-info full-width" }, [
+              _vm._v("Register Dosen")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("a", { attrs: { href: "/register-mahasiswa" } }, [
+            _c("button", { staticClass: "btn btn-primary full-width" }, [
+              _vm._v("Register Mahasiswa")
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "clearfix" }),
+      _vm._v(" "),
+      _c("br")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7d840a46", module.exports)
+  }
+}
+
+/***/ }),
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(55)
+/* script */
+var __vue_script__ = __webpack_require__(92)
+/* template */
+var __vue_template__ = __webpack_require__(93)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ButtonHeader.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-19eb1296", Component.options)
+  } else {
+    hotAPI.reload("data-v-19eb1296", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['status'],
+  methods: {
+    ubahstatus: function ubahstatus() {
+      if (vm.status) {
+        vm.status = 0;
+        vm.datavalue = '';
+      } else {
+        vm.status = 1;
+      }
+      vm.formstatus = 'create';
+    }
+  }
+});
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.status
+    ? _c(
+        "button",
+        { staticClass: "btn btn-success", on: { click: _vm.ubahstatus } },
+        [
+          _c("i", { staticClass: "fa fa-plus-circle" }),
+          _vm._v("\n  Tambah Data\n")
+        ]
+      )
+    : _c(
+        "button",
+        { staticClass: "btn btn-info", on: { click: _vm.ubahstatus } },
+        [
+          _c("i", { staticClass: "fa fa-arrow-circle-left" }),
+          _vm._v("\n  Kembali\n")
+        ]
+      )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-19eb1296", module.exports)
+  }
+}
+
+/***/ }),
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(55)
+/* script */
+var __vue_script__ = __webpack_require__(98)
+/* template */
+var __vue_template__ = __webpack_require__(99)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/FormKelas.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6170ab79", Component.options)
+  } else {
+    hotAPI.reload("data-v-6170ab79", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['urlform', 'token', 'datavalue'],
+  methods: {
+    ubahstatus: function ubahstatus() {
+      if (vm.status) {
+        vm.status = 0;
+      } else {
+        vm.status = 1;
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      staticClass: "form-horizontal",
+      attrs: { action: _vm.urlform, method: "POST" }
+    },
+    [
+      _c("input", {
+        attrs: { type: "hidden", name: "_token", id: "csrf-token" },
+        domProps: { value: _vm.token }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "label",
+          { staticClass: "control-label col-md-2 col-sm-2 col-xs-12" },
+          [_vm._v("\n      Nama Kelas\n    ")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-9 col-sm-9 col-xs-12" }, [
+          _c("input", {
+            staticClass: "form-control col-md-12 col-xs-12",
+            attrs: { type: "text", name: "namakelas", required: "" },
+            domProps: { value: _vm.datavalue.namakelas }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-12 col-sm-12 col-xs-12 text-center" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-success", attrs: { type: "submit" } },
+          [_vm._v("Submit")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "btn btn-danger", attrs: { type: "submit" } },
+          [_vm._v("Batal")]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6170ab79", module.exports)
+  }
+}
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(55)
+/* script */
+var __vue_script__ = __webpack_require__(101)
+/* template */
+var __vue_template__ = __webpack_require__(102)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ButtonHapusTabel.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3fea9710", Component.options)
+  } else {
+    hotAPI.reload("data-v-3fea9710", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url', 'jumlahrelasi'],
+  methods: {
+    hapus: function hapus(url, jumlahrelasi) {
+      if (jumlahrelasi > 0) {
+        swal({
+          title: 'Hapus',
+          text: 'Data Tidak dapat di Hapus',
+          icon: 'warning',
+          button: "OK"
+        });
+      } else {
+        swal({
+          title: "Ubah Status",
+          text: "Yakin Ingin Menghapus Data?",
+          icon: "warning",
+          buttons: ["Tidak", "Iya"]
+        }).then(function (hapus) {
+          if (hapus) {
+            window.location = url;
+          } else {
+            swal({
+              title: "Batal",
+              text: "Batal Menghapus Data",
+              icon: "info",
+              timer: 2500
+            });
+          }
+        });
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "btn-xs btn-danger",
+      on: {
+        click: function($event) {
+          _vm.hapus(_vm.url, _vm.jumlahrelasi)
+        }
+      }
+    },
+    [_c("i", { staticClass: "fa fa-trash" }), _vm._v(" Hapus\n")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3fea9710", module.exports)
+  }
+}
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(55)
+/* script */
+var __vue_script__ = __webpack_require__(104)
+/* template */
+var __vue_template__ = __webpack_require__(105)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ButtonEditTabel.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1dd60f19", Component.options)
+  } else {
+    hotAPI.reload("data-v-1dd60f19", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['url', 'tabel', 'iddata', 'auth'],
+  methods: {
+    edit: function edit(url, tabel, iddata) {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: '/api/' + tabel + '/' + iddata,
+        headers: { Authorization: 'Bearer ' + this.auth }
+      }).then(function (response) {
+        vm.datavalue = response.data;
+        vm.status = 0;
+        vm.formstatus = 'edit';
+        vm.urlform = _this.url;
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "btn-xs btn-info",
+      on: {
+        click: function($event) {
+          _vm.edit(_vm.url, _vm.tabel, _vm.iddata)
+        }
+      }
+    },
+    [_c("i", { staticClass: "fa fa-pencil" }), _vm._v(" Edit\n")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1dd60f19", module.exports)
   }
 }
 

@@ -8,6 +8,7 @@ use IDCrypt;
 use App\User;
 use App\Admin;
 use App\Dosen;
+use App\Kelas;
 
 class JsonController extends Controller
 {
@@ -51,16 +52,25 @@ class JsonController extends Controller
     if ($User) {
       if ($User->tipe == 1) {
         $DataUser = Admin::where('user_id', $User->id)
-        ->first();
+        ->first()
+        ->foto;
       } elseif ($User->tipe == 2) {
         $DataUser = Dosen::where('user_id', $User->id)
-        ->first();
+        ->first()
+        ->foto;
       } elseif ($User->tipe == 3) {
         $DataUser = Mahasiswa::where('user_id', $User->id)
-        ->first();
+        ->first()
+        ->foto;
       }
       return $DataUser;
     }
     return 'default.png';
+  }
+
+  public function JsonSingleDataKelas($Id){
+    $Id = IDCrypt::Decrypt($Id);
+    $Kelas = Kelas::findOrFail($Id);
+    return $Kelas;
   }
 }

@@ -20,4 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:api']], function () {
   Route::GET('/status-dosen', 'JsonController@JsonStatusDosen');
   Route::GET('/ubah-status-dosen/{id}', 'JsonController@JsonUbahStatusDosen');
+  Route::GET('/kelas/{id}', 'JsonController@JsonSingleDataKelas');
 });
+
+Route::GET('/login/{username}', 'JsonController@JsonLogin');

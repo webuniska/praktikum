@@ -13,40 +13,59 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <button onclick="redirect('{{route('TambahDataKelas')}}')" class="btn btn-success">
-                <i class="fa fa-plus-circle"></i>
-                Tambah Data
-              </button>
+              <button-header
+                :status="status"
+              ></button-header>
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-              <table id="datatable" class="table table-striped table-bordered">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Nama Kelas</th>
-                    <th>Jumlah Mahasiswa</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($Kelas as $Index=>$DataKelas)
+              <div v-if="status == 0" v-cloak>
+                <form-kelas
+                  urlform = {{ route('TambahDataKelas') }}
+                  token = {{ csrf_token() }}
+                  :datavalue = "datavalue"
+                  v-if="formstatus == 'create'"
+                ></form-kelas>
+                <form-kelas
+                  :urlform = "urlform"
+                  token = {{ csrf_token() }}
+                  :datavalue = "datavalue"
+                  v-else
+                ></form-kelas>
+              </div>
+              <div v-if="status == 1">
+                <table id="datatable" class="table table-striped table-bordered">
+                  <thead>
                     <tr>
-                      <td>{{$Index+1}}</td>
-                      <td>{{$DataKelas->namakelas}}</td>
-                      <td>{{count($DataKelas->Mahasiswa)}}</td>
-                      <td class="text-center">
-                        <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataKelas', ['id' => IDCrypt::Encrypt($DataKelas->id)])}}')">
-                          <i class="fa fa-pencil"></i> Edit
-                        </button>
-                        <button class="btn-xs btn-danger" onclick="{{count($DataKelas->Mahasiswa) ? 'cant' : ''}}hapus('{{route('HapusDataKelas', ['id' => IDCrypt::Encrypt($DataKelas->id)])}}')">
-                          <i class="fa fa-trash"></i> Hapus
-                        </button>
-                      </td>
+                      <th>#</th>
+                      <th>Nama Kelas</th>
+                      <th>Jumlah Mahasiswa</th>
+                      <th>Aksi</th>
                     </tr>
-                  @endforeach
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    @foreach ($Kelas as $Index=>$DataKelas)
+                      <tr>
+                        <td>{{$Index+1}}</td>
+                        <td>{{$DataKelas->namakelas}}</td>
+                        <td>{{count($DataKelas->Mahasiswa)}}</td>
+                        <td class="text-center">
+                          <button-edit
+                            auth = {{Auth::user()->api_token}}
+                            tabel = "kelas"
+                            iddata = {{ IDCrypt::Encrypt($DataKelas->id) }}
+                            url = {{ route('EditDataKelas', ['id' => IDCrypt::Encrypt($DataKelas->id)]) }}
+                          ></button-edit>
+                          <button-hapus
+                            url = "{{route('HapusDataKelas', ['id' => IDCrypt::Encrypt($DataKelas->id)])}}"
+                            jumlahrelasi = {{count($DataKelas->Mahasiswa)}}
+                          ></button-hapus>
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
