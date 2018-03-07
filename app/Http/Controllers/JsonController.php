@@ -17,6 +17,13 @@ class JsonController extends Controller
     return $Admin;
   }
 
+  public function JsonDataDosen($Id){
+    $Dosen = Dosen::with('User')
+                  ->find($Id);
+
+    return $Dosen;
+  }
+
   public function JsonLogin($username){
     $User = User::where('username', $username)
                 ->first();
