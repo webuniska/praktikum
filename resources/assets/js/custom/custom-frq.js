@@ -110,8 +110,9 @@ window.statusmateriperiode = function (id,route)
 }
 
 Vue.component('status-dosen', require('./../components/StatusDosen.vue'))
+Vue.component('button-ubahstatusdosen', require('./../components/ButtonUbahStatusDosen.vue'))
 
-app = new Vue({
+vm = new Vue({
     el: '#app',
     props: ['idDosen'],
     data: {
@@ -215,8 +216,5 @@ app = new Vue({
         }
         console.log(response['message'])
       })
-      // axios.get('/json/data-dosen/0').then((response) => {
-      //   this.statusDosen = response.data
-      // })
     }
 });

@@ -39,16 +39,22 @@
                         <td>{{$DataDosen->nama}}</td>
                         <td class="text-center">
                           <status-dosen
-                            status={{$DataDosen->status}}
+                            dosenid={{$DataDosen->id}}
+                            :statusdosen="statusDosen"
+                            auth={{Auth::user()->api_token}}
                           ></status-dosen>
                         </td>
                         <td class="text-center">
                           <button class="btn-xs btn-primary" @click="dosenJson('{{IDCrypt::Encrypt($DataDosen->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-info"></i> Info
                           </button>
-                          <button class="btn-xs btn-primary" @click="ubahStatusDosen('{{IDCrypt::Encrypt($DataDosen->id)}}')">
+                          <button-ubahstatusdosen
+                            auth={{Auth::user()->api_token}}
+                            dosenid={{$DataDosen->id}}
+                          ></button-ubahstatusdosen>
+                          {{-- <button class="btn-xs btn-primary" @click="ubahStatusDosen('{{IDCrypt::Encrypt($DataDosen->id)}}')">
                             <i class="fa fa-exchange"></i> Ubah Status
-                          </button>
+                          </button> --}}
                           <button class="btn-xs btn-info" onclick=" ">
                             <i class="fa fa-pencil"></i> Edit
                           </button>

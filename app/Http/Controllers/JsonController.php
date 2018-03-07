@@ -7,9 +7,31 @@ use Illuminate\Http\Request;
 use IDCrypt;
 use App\User;
 use App\Admin;
+use App\Dosen;
 
 class JsonController extends Controller
 {
+  public function JsonAllDataDosen(){
+    $Dosen = Dosen::all();
+    return response()->json($Dosen);
+  }
+
+  public function JsonStatusDosen(){
+    $Dosen = Dosen::all()
+                  ->pluck('status','id');
+
+    return response()->json($Dosen);
+  }
+
+  public function JsonUbahStatusDosen($Id){
+    $Dosen = Dosen::find($Id);
+
+    $Dosen->status = $Dosen->status ? 0 : 1;
+    $Response = $Dosen->save();
+
+    return $Dosen->status;
+  }
+
   public function JsonDataAdmin($Id){
     $Admin = Admin::with('User')
                   ->find($Id);
@@ -18,10 +40,9 @@ class JsonController extends Controller
   }
 
   public function JsonDataDosen($Id){
-    $Dosen = Dosen::with('User')
-                  ->find($Id);
+    $Dosen = Dosen::find($Id);
 
-    return $Dosen;
+    return response()->json($Dosen);
   }
 
   public function JsonLogin($username){

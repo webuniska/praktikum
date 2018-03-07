@@ -12188,8 +12188,9 @@ window.statusmateriperiode = function (id, route) {
 };
 
 Vue.component('status-dosen', __webpack_require__(54));
+Vue.component('button-ubahstatusdosen', __webpack_require__(82));
 
-app = new Vue({
+vm = new Vue({
   el: '#app',
   props: ['idDosen'],
   data: (_data = {
@@ -12297,9 +12298,6 @@ app = new Vue({
       }
       console.log(response['message']);
     });
-    // axios.get('/json/data-dosen/0').then((response) => {
-    //   this.statusDosen = response.data
-    // })
   }
 });
 
@@ -47378,13 +47376,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['status'],
-  data: function data() {
-    return {
-      datastatus: ''
-    };
-  },
-  mounted: function mounted() {}
+  props: ['statusdosen', 'auth', 'dosenid'],
+  created: function created() {
+    axios({
+      method: 'get',
+      url: '/api/status-dosen',
+      headers: { Authorization: 'Bearer ' + this.auth }
+    }).then(function (response) {
+      vm.statusDosen = response.data;
+    });
+  }
 });
 
 /***/ }),
@@ -47395,7 +47396,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return this.status == 1
+  return _vm.statusdosen[_vm.dosenid] == 1
     ? _c("span", { staticClass: "badge bg-green" }, [_vm._v("Aktif")])
     : _c("span", { staticClass: "badge bg-red" }, [_vm._v("Non-Aktif")])
 }
@@ -68564,6 +68565,137 @@ $(document).ready(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(55)
+/* script */
+var __vue_script__ = __webpack_require__(83)
+/* template */
+var __vue_template__ = __webpack_require__(84)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ButtonUbahStatusDosen.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0923495c", Component.options)
+  } else {
+    hotAPI.reload("data-v-0923495c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['dosenid', 'auth'],
+  methods: {
+    ubahstatusdosen: function ubahstatusdosen(id) {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: '/api/ubah-status-dosen/' + id,
+        headers: { Authorization: 'Bearer ' + this.auth }
+      }).then(function (response) {
+        axios({
+          method: 'get',
+          url: '/api/status-dosen',
+          headers: { Authorization: 'Bearer ' + _this.auth }
+        }).then(function (response) {
+          vm.statusDosen = response.data;
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "btn-xs btn-primary",
+      on: {
+        click: function($event) {
+          _vm.ubahstatusdosen(_vm.dosenid)
+        }
+      }
+    },
+    [_c("i", { staticClass: "fa fa-exchange" }), _vm._v("\n  Ubah Status\n")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0923495c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
