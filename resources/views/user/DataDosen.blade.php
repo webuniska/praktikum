@@ -38,7 +38,9 @@
                         <td>{{$DataDosen->nomorinduk}}</td>
                         <td>{{$DataDosen->nama}}</td>
                         <td class="text-center">
-                          <status-dosen :statusdosen="statusDosen" iddosen="{{$DataDosen->id}}"></status-dosen>
+                          <status-dosen
+                            status={{$DataDosen->status}}
+                          ></status-dosen>
                         </td>
                         <td class="text-center">
                           <button class="btn-xs btn-primary" @click="dosenJson('{{IDCrypt::Encrypt($DataDosen->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
@@ -47,10 +49,10 @@
                           <button class="btn-xs btn-primary" @click="ubahStatusDosen('{{IDCrypt::Encrypt($DataDosen->id)}}')">
                             <i class="fa fa-exchange"></i> Ubah Status
                           </button>
-                          <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataDosen', ['Id' => IDCrypt::Encrypt($DataDosen->id)])}}')">
+                          <button class="btn-xs btn-info" onclick=" ">
                             <i class="fa fa-pencil"></i> Edit
                           </button>
-                          <button class="btn-xs btn-danger" onclick="{{$DataDosen->id == DataUser::DataUser(Auth::user())->id ? 'cant' : ''}}hapus('{{route('HapusDataDosen', ['Id' => IDCrypt::Encrypt($DataDosen->id)])}}')">
+                          <button class="btn-xs btn-danger" onclick=" ">
                             <i class="fa fa-trash"></i> Hapus
                           </button>
                         </td>
@@ -69,7 +71,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle" @click.right="Info()">Info Data Dosen</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle" @click.right="Info()">Info Data Admin</h5>
         </div>
         <div class="modal-body">
           <div class="text-center">

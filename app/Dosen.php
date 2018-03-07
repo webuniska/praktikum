@@ -8,6 +8,6 @@ class Dosen extends Model
 {
   public function User()
   {
-    return $this->belongsTo('App\User');
+    return $this->hasOne('App\User');
   }
 }

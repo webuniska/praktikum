@@ -12,9 +12,9 @@ use IDCrypt;
 use Tanggal;
 use DataUser;
 use ArrayHelper;
-use App\User;
 use App\Admin;
 use App\Dosen;
+use App\User;
 use App\Kelas;
 use App\Periode;
 use App\Mahasiswa;
@@ -439,8 +439,6 @@ class UserController extends Controller
     return redirect(route('DataDosen'))->with('success', 'Data Dosen '.$request->nama.' Berhasil di Tambah');
   }
 
-
-
   public function EditDataDosen($Id)
   {
     $Id = IDCrypt::Decrypt($Id);
@@ -516,5 +514,4 @@ class UserController extends Controller
   {
     return view ('user.EditDataMahasiswa');
   }
-
 }

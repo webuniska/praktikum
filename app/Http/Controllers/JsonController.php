@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use IDCrypt;
 use App\User;
 use App\Admin;
-use App\Dosen;
 
 class JsonController extends Controller
 {

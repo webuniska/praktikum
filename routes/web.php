@@ -122,8 +122,6 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
   // JSON
   Route::GET('/json/data-admin/{id}', 'JsonController@JsonDataAdmin')
        ->name('JsonDataAdmin');
-  Route::GET('/json/data-dosen/{id}', 'JsonController@JsonDataDosen')
-       ->name('JsonDataAdmin');
 });
 
 // Json
@@ -135,3 +133,4 @@ Route::get('/dashboard', 'UserController@Dashboard')->name('Dashboard');
 
 
 // Route::get('/home', 'HomeController@index')->name('home');
+//
