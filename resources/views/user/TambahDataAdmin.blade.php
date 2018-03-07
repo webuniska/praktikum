@@ -35,7 +35,7 @@
                     Nama
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value="{{old('nama')}}" required pattern="[.,a-zA-Z\s]+" title="Input tidak menggunakan angka dan menggunakan simbol titik (.) dan koma (,)">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="nama" value="{{old('nama')}}" required pattern="(.,[a-z]\s)(.,[A-Z]\s).{6,}+" title="Input tidak menggunakan angka">
                   </div>
                 </div>
                 <div class="form-group">
@@ -60,9 +60,6 @@
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
                     <input type="file" class="form-control col-md-12 col-xs-12" name="foto">
-                    <label class="control-label text-left col-md-5 col-sm-7 col-xs-12">
-                        Maksimal foto yang di upload berukuran 2 MB.
-                    </label>
                   </div>
                 </div>
                 <hr>
@@ -71,7 +68,7 @@
                     Username
                   </label>
                   <div class="col-md-9 col-sm-9 col-xs-12">
-                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" value="{{old('username')}}" required pattern="^[A-Za-z0-9]{6,}$" title="Input tidak menggunakan spasi, simbol dan minimal 6 karakter">
+                    <input type="text" class="form-control col-md-12 col-xs-12" name="username" value="{{old('username')}}" required pattern="^[A-Za-z0-9]{6,}$" title="Input tidak menggunakan spasi dan dan minimal 6 karakter">
                   </div>
                 </div>
                 <div class="form-group">

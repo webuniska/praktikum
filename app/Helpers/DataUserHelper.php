@@ -23,14 +23,4 @@ class DataUserHelper
     }
     return $DataUser;
   }
-
-  public static function ShowStatusDosen($Status)
-  {
-    if ($Status) {
-      $return = '<span class="badge bg-green">Aktif</span>';
-    }else {
-      $return = '<span class="badge bg-red">Non-Aktif</span>';
-    }
-    return $return;
-  }
 }
