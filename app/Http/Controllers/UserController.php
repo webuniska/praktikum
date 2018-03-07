@@ -13,6 +13,7 @@ use Tanggal;
 use DataUser;
 use ArrayHelper;
 use App\Admin;
+use App\Dosen;
 use App\User;
 use App\Kelas;
 use App\Periode;
@@ -375,7 +376,6 @@ class UserController extends Controller
 
     return redirect(route('DataAdmin'))->with('success', 'Data Admin Berhasil di Hapus');
   }
-<<<<<<< HEAD
 
   public function DataDosen()
   {
@@ -514,7 +514,4 @@ class UserController extends Controller
   {
     return view ('user.EditDataMahasiswa');
   }
-
-=======
->>>>>>> master
 }
