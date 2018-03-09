@@ -556,13 +556,15 @@ class UserController extends Controller
     return redirect(route('DataMahasiswa'))->with('success', 'Data Mahasiswa '.$request->nama.' Berhasil di Tambah');
   }
 
-  public function EditDataMahasiswa($Id)
-  {
+  public function EditDataMahasiswa($Id){
     $Id = IDCrypt::Decrypt($Id);
     $Mahasiswa = Mahasiswa::find($Id);
+    $Kelas = Kelas::all();
 
-    return view('user.EditDataMahasiswa', ['Mahasiswa'=>$Mahasiswa]);
+    return view('user.EditDataMahasiswa', ['Mahasiswa'=>$Mahasiswa,'Kelas' =>$Kelas]);
   }
+
+
   public function submitEditDataMahasiswa(Request $request, $Id)
   {
     $Id = IDCrypt::Decrypt($Id);

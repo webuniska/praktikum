@@ -72,12 +72,20 @@
           </div>
           <table class="table table-info">
             <tr>
-              <td>Nomor Induk</td>
+              <td>NPM</td>
               <td>@{{nomorinduk}}</td>
             </tr>
             <tr>
               <td>Nama</td>
               <td>@{{nama}}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>@{{email}}</td>
+            </tr>
+            <tr>
+              <td>No. Hp</td>
+              <td>@{{nohp}}</td>
             </tr>
             <tr>
               <td>Username</td>

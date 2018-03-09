@@ -112,11 +112,11 @@ Route::group(['middleware' => ['UserMiddleware']], function () {
        ->name('TambahDataMahasiswa');
   Route::POST('/data-mahasiswa/tambah', 'UserController@submitTambahDataMahasiswa')
        ->name('submitTambahDataMahasiswa');
-  Route::GET('/data-mahasiswa//edit', 'UserController@EditDataMahasiswa')
+  Route::GET('/data-mahasiswa/{id}/edit', 'UserController@EditDataMahasiswa')
        ->name('EditDataMahasiswa');
-  Route::POST('/data-mahasiswa//edit', 'UserController@submitEditDataMahasiswa')
+  Route::POST('/data-mahasiswa/{id}/edit', 'UserController@submitEditDataMahasiswa')
        ->name('submitEditDataMahasiswa');
-  Route::GET('/data-mahasiswa//hapus', 'UserController@HapusDataMahasiswa')
+  Route::GET('/data-mahasiswa/{id}/hapus', 'UserController@HapusDataMahasiswa')
        ->name('HapusDataMahasiswa');
 
   // JSON
