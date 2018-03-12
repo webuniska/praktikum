@@ -15,8 +15,8 @@ class InitialUserAdmin extends Seeder
   public function run()
   {
     $User = new User;
-    $User->username = '01012011';
-    $User->password = bcrypt('01012011');
+    $User->username = 'admin';
+    $User->password = bcrypt('admin');
     $User->tipe     = 1;
     $User->save();
 

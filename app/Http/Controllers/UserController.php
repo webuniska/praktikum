@@ -390,7 +390,7 @@ class UserController extends Controller
     $Dosen->status = $Dosen->status ? 0 : 1;
     $return = $Dosen->save();
 
-    return $return ? 1 : 0;
+    return redirect(route('DataDosen'))->with('success', 'Status Dosen'.$Dosen->nama.' Berhasil di Ubah');
   }
 
   public function TambahDataDosen()
@@ -423,6 +423,7 @@ class UserController extends Controller
     $Dosen->nama       = $request->nama;
     $Dosen->nohp       = $request->nohp;
     $Dosen->email      = $request->email;
+    $Dosen->status     = $request->status;
     if ($request->foto) {
       $FotoExt  = $request->foto->getClientOriginalExtension();
       $FotoName = 'Dosen - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
@@ -432,7 +433,6 @@ class UserController extends Controller
     }else {
       $Dosen->foto = 'default.png';
     }
-    $Dosen->status      = $request->status;
     $Dosen->user_id = $IdUser;
     $Dosen->save();
 
@@ -443,7 +443,6 @@ class UserController extends Controller
   {
     $Id = IDCrypt::Decrypt($Id);
     $Dosen = Dosen::find($Id);
-
     return view('user.EditDataDosen', ['Dosen'=>$Dosen]);
   }
   public function submitEditDataDosen(Request $request, $Id)
