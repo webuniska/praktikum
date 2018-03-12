@@ -34,5 +34,7 @@ yg diperlukan untuk jadi kontributor :
 ``php artisan migrate``
 - seed record db utk user admin
 ``php artisan db:seed``
+- run css dan js (bingung aing menjelaskan)
+``NPM run watch``
 - serve ur project
 ``php artisan serve``

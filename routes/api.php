@@ -17,6 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('/asd', function () {
-    return 'asd';
+Route::group(['middleware' => ['auth:api']], function () {
+  Route::GET('/status-dosen', 'JsonController@JsonStatusDosen');
+  Route::GET('/ubah-status-dosen/{id}', 'JsonController@JsonUbahStatusDosen');
+  Route::GET('/kelas/{id}', 'JsonController@JsonSingleDataKelas');
 });
+
+Route::GET('/login/{username}', 'JsonController@JsonLogin');

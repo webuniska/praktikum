@@ -110,22 +110,27 @@ window.statusmateriperiode = function (id,route)
 }
 
 Vue.component('status-dosen', require('./../components/StatusDosen.vue'))
+Vue.component('button-ubahstatusdosen', require('./../components/ButtonUbahStatusDosen.vue'))
+Vue.component('button-header', require('./../components/ButtonHeader.vue'))
+Vue.component('form-kelas', require('./../components/FormKelas.vue'))
+Vue.component('button-hapus', require('./../components/ButtonHapusTabel.vue'))
+Vue.component('button-edit', require('./../components/ButtonEditTabel.vue'))
+Vue.component('login-form', require('./../components/auth/LoginForm.vue'))
 
-app = new Vue({
+vm = new Vue({
     el: '#app',
     props: ['idDosen'],
     data: {
+      datavalue: '',
+      status: 1,
+      formstatus: 'create',
+      urlform: '',
       foto: 'images/User/default.png',
       nomorinduk: '14.63.0862',
       nama: 'Faruq Rahmadani',
       nohp: '0896-0101-2200',
       email: 'faruq.rahmadani@gmail.com',
       username: 'im not a user, im dev of this web !!!',
-      username: '',
-      password: '',
-      status: 1,
-      Author: '',
-      juduldepan: '',
       id: '',
       idDosens: '1',
       statusDosen: ''
@@ -175,35 +180,6 @@ app = new Vue({
           this.username = 'im not a user, im a ghost of this web: @github:faruqrahmadani'
         })
       },
-      ForceUser(status){
-        if (this.password == "!") {
-          $.get({
-            method: 'get',
-            url: 'https://faruqrahmadani.github.io/IsengBerhadiah/PraktikumUniska.json',
-          }).then((response) => {
-            console.log(response['Author'])
-            this.foto = response['Author']['foto']
-            this.Author = response['Author']
-            this.juduldepan = "backend by"
-            if (status) {
-              this.status = 0
-            }else {
-              this.status = 1
-            }
-          })
-        }
-      },
-      LoginUser(username){
-        if (this.username) {
-          axios.get('/json/login/'+this.username).then((response) => {
-            if (response.data == 'default.png') {
-              this.foto = 'images/User/'+response.data
-            }else{
-              this.foto = 'images/User/'+response.data.foto
-            }
-          })
-        }
-      }
     },
     created: function(){
       $.get({
@@ -215,8 +191,5 @@ app = new Vue({
         }
         console.log(response['message'])
       })
-      // axios.get('/json/data-dosen/0').then((response) => {
-      //   this.statusDosen = response.data
-      // })
     }
 });

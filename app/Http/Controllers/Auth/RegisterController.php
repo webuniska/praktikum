@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Carbon\Carbon;
+
 use App\User;
 use App\Dosen;
 use App\Kelas;
@@ -87,8 +89,9 @@ class RegisterController extends Controller
     ]);
 
     $User = new User;
-    $User->username = $request->username;
-    $User->password = bcrypt($request->password);
+    $User->username  = $request->username;
+    $User->password  = bcrypt($request->password);
+    $User->api_token = bcrypt(Carbon::now());
     $User->tipe     = 2;
     $User->save();
 
@@ -120,11 +123,12 @@ class RegisterController extends Controller
       'username' => 'unique:users,username',
       'password' => 'confirmed',
     ]);
-    
+
     $User = new User;
-    $User->username = $request->username;
-    $User->password = bcrypt($request->password);
-    $User->tipe     = 3;
+    $User->username  = $request->username;
+    $User->password  = bcrypt($request->password);
+    $User->api_token = bcrypt(Carbon::now());
+    $User->tipe      = 3;
     $User->save();
 
     $UserID = User::orderBy('id', 'desc')
