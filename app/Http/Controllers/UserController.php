@@ -502,16 +502,120 @@ class UserController extends Controller
 
   public function DataMahasiswa()
   {
-    return view ('user.DataMahasiswa');
+    $Mahasiswa = Mahasiswa::all();
+
+    return view('user.DataMahasiswa', ['Mahasiswa' => $Mahasiswa]);
   }
 
   public function TambahDataMahasiswa()
   {
-    return view('user.TambahDataMahasiswa');
+    $Kelas = Kelas::all();
+    return view('user.TambahDataMahasiswa', ['Kelas' =>$Kelas]);
   }
 
-  public function EditDataMahasiswa()
+  public function submitTambahDataMahasiswa(Request $request)
   {
-    return view ('user.EditDataMahasiswa');
+    $this->validate($request, [
+      'username' => [
+          Rule::unique('users')
+        ],
+    ]);
+
+    $User  = new User;
+
+    $User->username = $request->username;
+    $User->password = bcrypt($request->password);;
+    $User->tipe     = 3;
+    $User->save();
+
+    $IdUser = User::orderBy('id', 'desc')
+                  ->first()
+                  ->id;
+
+    $Mahasiswa = new Mahasiswa;
+
+    $Mahasiswa->nomorinduk = $request->nomorinduk;
+    $Mahasiswa->nama       = $request->nama;
+    $Mahasiswa->nohp       = $request->nohp;
+    $Mahasiswa->email      = $request->email;
+    if ($request->foto) {
+      $FotoExt  = $request->foto->getClientOriginalExtension();
+      $FotoName = 'Mahasiswa - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
+      $Foto     = $FotoName.'.'.$FotoExt;
+      $request->foto->move('images/User', $Foto);
+      $Mahasiswa->foto = $Foto;
+    }else {
+      $Mahasiswa->foto = 'default.png';
+    }
+    $Mahasiswa->user_id = $IdUser;
+    $Mahasiswa->kelas_id = $request->kelas_id;
+    $Mahasiswa->save();
+
+
+
+    return redirect(route('DataMahasiswa'))->with('success', 'Data Mahasiswa '.$request->nama.' Berhasil di Tambah');
+  }
+
+  public function EditDataMahasiswa($Id){
+    $Id = IDCrypt::Decrypt($Id);
+    $Mahasiswa = Mahasiswa::find($Id);
+    $Kelas = Kelas::all();
+
+    return view('user.EditDataMahasiswa', ['Mahasiswa'=>$Mahasiswa,'Kelas' =>$Kelas]);
+  }
+
+
+  public function submitEditDataMahasiswa(Request $request, $Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $Mahasiswa = Mahasiswa::find($Id);
+    $User  = User::find($Mahasiswa->user_id);
+
+    $this->validate($request, [
+      'username' => [
+          Rule::unique('users')->ignore($User->username, 'username'),
+        ],
+    ]);
+
+    $User->username = $request->username;
+    if ($request->password) {
+      $User->password = bcrypt($request->password);
+    }
+
+    $Mahasiswa->nomorinduk = $request->nomorinduk;
+    $Mahasiswa->nama       = $request->nama;
+    $Mahasiswa->nohp       = $request->nohp;
+    $Mahasiswa->email      = $request->email;
+    if ($request->foto) {
+      if ($Mahasiswa->foto != 'default.png') {
+        File::delete('images/User/'.$Mahasiswa->foto);
+      }
+      $FotoExt  = $request->foto->getClientOriginalExtension();
+      $FotoName = 'Mahasiswa - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
+      $Foto     = $FotoName.'.'.$FotoExt;
+      $request->foto->move('images/User', $Foto);
+      $Mahasiswa->foto = $Foto;
+    }
+
+    $User->save();
+    $Mahasiswa->save();
+
+    return redirect(route('DataMahasiswa'))->with('success', 'Data Mahasiswa '.$request->nama.' Berhasil di Ubah');
+  }
+
+  public function HapusDataMahasiswa($Id)
+  {
+    $Id = IDCrypt::Decrypt($Id);
+    $Mahasiswa = Mahasiswa::find($Id);
+    $User = User::find($Mahasiswa->user_id);
+
+    if ($Mahasiswa->foto != 'default.png') {
+      File::delete('images/User/'.$Mahasiswa->foto);
+    }
+
+    $Mahasiswa->delete();
+    $User->delete();
+
+    return redirect(route('DataMahasiswa'))->with('success', 'Data Mahasiswa Berhasil di Hapus');
   }
 }
