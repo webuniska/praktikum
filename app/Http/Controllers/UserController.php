@@ -25,6 +25,18 @@ class UserController extends Controller
 {
   public function Home()
   {
+    $User = Auth::user();
+    $tipe=$User->tipe;
+
+    if ($tipe==1) {
+      return view('user.Home');
+    }else if ($tipe==2) {
+      return view('dosen.Home');
+    }else if ($tipe==3) {
+      return view('mahasiswa.Home');
+    }else{
+      return false;
+    }
     return view('user.Home');
   }
 
