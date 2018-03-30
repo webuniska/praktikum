@@ -46,13 +46,13 @@
                           <button class="btn-xs btn-primary" @click="dosenJson('{{IDCrypt::Encrypt($DataDosen->id)}}')" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-info"></i> Info
                           </button>
-                          <button class="btn-xs btn-primary" @click="ubahStatusDosen('{{IDCrypt::Encrypt($DataDosen->id)}}')">
+                          <button class="btn-xs btn-primary"onclick="redirect('{{route('UbahStatusDosen', ['Id' => IDCrypt::Encrypt($DataDosen->id)])}}')">
                             <i class="fa fa-exchange"></i> Ubah Status
                           </button>
-                          <button class="btn-xs btn-info" onclick=" ">
+                          <button class="btn-xs btn-info" onclick="redirect('{{route('EditDataDosen', ['Id' => IDCrypt::Encrypt($DataDosen->id)])}}')">
                             <i class="fa fa-pencil"></i> Edit
                           </button>
-                          <button class="btn-xs btn-danger" onclick=" ">
+                          <button class="btn-xs btn-danger" onclick="redirect('{{route('HapusDataDosen', ['Id' => IDCrypt::Encrypt($DataDosen->id)])}}')">
                             <i class="fa fa-trash"></i> Hapus
                           </button>
                         </td>

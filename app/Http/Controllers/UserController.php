@@ -25,6 +25,18 @@ class UserController extends Controller
 {
   public function Home()
   {
+    $User = Auth::user();
+    $tipe=$User->tipe;
+
+    if ($tipe==1) {
+      return view('user.Home');
+    }else if ($tipe==2) {
+      return view('dosen.Home');
+    }else if ($tipe==3) {
+      return view('mahasiswa.Home');
+    }else{
+      return false;
+    }
     return view('user.Home');
   }
 
@@ -390,7 +402,7 @@ class UserController extends Controller
     $Dosen->status = $Dosen->status ? 0 : 1;
     $return = $Dosen->save();
 
-    return $return ? 1 : 0;
+    return redirect(route('DataDosen'))->with('success', 'Status Dosen'.$Dosen->nama.' Berhasil di Ubah');
   }
 
   public function TambahDataDosen()
@@ -423,6 +435,7 @@ class UserController extends Controller
     $Dosen->nama       = $request->nama;
     $Dosen->nohp       = $request->nohp;
     $Dosen->email      = $request->email;
+    $Dosen->status     = $request->status;
     if ($request->foto) {
       $FotoExt  = $request->foto->getClientOriginalExtension();
       $FotoName = 'Dosen - '.$request->nama.' - '.IDCrypt::Encrypt($User->id);
@@ -432,7 +445,6 @@ class UserController extends Controller
     }else {
       $Dosen->foto = 'default.png';
     }
-    $Dosen->status      = $request->status;
     $Dosen->user_id = $IdUser;
     $Dosen->save();
 
@@ -443,7 +455,6 @@ class UserController extends Controller
   {
     $Id = IDCrypt::Decrypt($Id);
     $Dosen = Dosen::find($Id);
-
     return view('user.EditDataDosen', ['Dosen'=>$Dosen]);
   }
   public function submitEditDataDosen(Request $request, $Id)
@@ -618,4 +629,16 @@ class UserController extends Controller
 
     return redirect(route('DataMahasiswa'))->with('success', 'Data Mahasiswa Berhasil di Hapus');
   }
+
+  /*form mahasiswa*/
+  public function DataMateriMahasiswa(){
+    $MateriPraktikum = MateriPraktikum::all();
+    return view('mahasiswa.DataMateri', ['MateriPraktikum' => $MateriPraktikum]);
+  }
+
+
+
+
+
+
 }
