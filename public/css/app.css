@@ -6204,7 +6204,7 @@ a.badge:hover {
 
 .thumbnail {
   display: block;
-  padding: 4px;
+  padding: 8px;
   margin-bottom: 20px;
   line-height: 1.42857143;
   background-color: #fff;
@@ -17063,4 +17063,3 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 [v-cloak] {
   display: none;
 }
-

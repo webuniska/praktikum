@@ -134,3 +134,7 @@ Route::get('/dashboard', 'UserController@Dashboard')->name('Dashboard');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 //
+
+//form Mahasiswa
+Route::GET('/data-materi-mahasiswa', 'UserController@DataMateriMahasiswa')
+     ->name('DataMateriMahasiswa');

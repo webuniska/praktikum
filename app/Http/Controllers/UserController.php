@@ -629,4 +629,16 @@ class UserController extends Controller
 
     return redirect(route('DataMahasiswa'))->with('success', 'Data Mahasiswa Berhasil di Hapus');
   }
+
+  /*form mahasiswa*/
+  public function DataMateriMahasiswa(){
+    $MateriPraktikum = MateriPraktikum::all();
+    return view('mahasiswa.DataMateri', ['MateriPraktikum' => $MateriPraktikum]);
+  }
+
+
+
+
+
+
 }

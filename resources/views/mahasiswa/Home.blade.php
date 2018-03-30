@@ -1,10 +1,10 @@
-@extends('dosen.Layout.Master')
+@extends('mahasiswa.Layout.Master')
 @section('content')
   <div class="right_col" role="main">
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Hai Dosen</h3>
+          <h3>Hai Mahasiswa</h3>
         </div>
       </div>
 
@@ -18,7 +18,7 @@
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-              Add content to the page ...
+                <p>add conten here...</p>
             </div>
           </div>
         </div>
